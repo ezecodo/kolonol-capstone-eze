@@ -1,9 +1,9 @@
-import Heading from "../components/Heading";
+import Home from "../components/Home";
 
-export default function Home() {
+export default function Index() {
   return (
     <main>
-      <Heading>🔱Atlantis Capstone Template🔱</Heading>
+      <Home />
     </main>
   );
 }

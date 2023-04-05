@@ -1,14 +1,17 @@
-import GlobalStyle from "../styles";
-import Head from "next/head";
+import React from "react";
+import App from "next/app";
+import Layout from "../components/Layout";
 
-export default function App({ Component, pageProps }) {
-  return (
-    <>
-      <GlobalStyle />
-      <Head>
-        <title>Capstone Project</title>
-      </Head>
-      <Component {...pageProps} />
-    </>
-  );
+class MyApp extends App {
+  render() {
+    const { Component, pageProps } = this.props;
+
+    return (
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    );
+  }
 }
+
+export default MyApp;
