@@ -1,9 +1,48 @@
-import Home from "../components/Home";
+import React from "react";
+import styled from "styled-components";
+import Link from "next/link";
 
-export default function Index() {
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+`;
+
+const Button = styled.button`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  margin: 20px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+`;
+
+const ButtonImage = styled.img`
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+`;
+
+function Home() {
   return (
-    <main>
-      <Home />
-    </main>
+    <Wrapper>
+      <Link href="../restaurants">Latin Restaurants</Link>
+      <Link href="/latin-music">
+        <Button>
+          <ButtonImage src="" />
+          Latin Music
+        </Button>
+      </Link>
+    </Wrapper>
   );
 }
+
+export default Home;

@@ -34,9 +34,9 @@ const ButtonImage = styled.img`
 function Home() {
   return (
     <Wrapper>
-      <Link href="/latin-restaurants">
+      <Link href="../LatinRestaurants/">
         <Button>
-          <ButtonImage src="/latin_restaurants.jpg" alt="Latin Restaurants" />
+          <ButtonImage src="/latin_restaurants.jpg" />
           Latin Restaurants
         </Button>
       </Link>
