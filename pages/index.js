@@ -31,17 +31,24 @@ const ButtonImage = styled.img`
   margin-bottom: 10px;
 `;
 
+const Container = styled.div`
+  height: calc(100vh - 80px);
+  overflow: auto;
+`;
+
 function Home() {
   return (
-    <Wrapper>
-      <Link href="../restaurants">Latin Restaurants</Link>
-      <Link href="/latin-music">
-        <Button>
-          <ButtonImage src="" />
-          Latin Music
-        </Button>
-      </Link>
-    </Wrapper>
+    <Container>
+      <Wrapper>
+        <Link href="../restaurants">Latin Restaurants</Link>
+        <Link href="/latin-music">
+          <Button>
+            <ButtonImage src="" />
+            Latin Music
+          </Button>
+        </Link>
+      </Wrapper>
+    </Container>
   );
 }
 

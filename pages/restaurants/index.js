@@ -1,20 +1,21 @@
 import { getLatinRestaurants } from "../../utils/google_places";
-import Link from "next/link";
+import RestaurantCard from "../../components/RestaurantCard";
+import styled from "styled-components";
+import Layout from "../../components/Layout";
+
+const Title = styled.h1`
+  margin-top: 100px; /* ajusta el margen superior según sea necesario */
+`;
 
 export default function LatinRestaurants({ restaurants }) {
   return (
-    <div>
-      <h1>Latin food in Köln / Comida latina en Colonia</h1>
-      <ul>
+    <Layout title="Latin Restaurants">
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
         {restaurants.map((restaurant) => (
-          <li key={restaurant.place_id}>
-            <Link href={`../restaurants/${restaurant.place_id}`}>
-              {restaurant.name}
-            </Link>
-          </li>
+          <RestaurantCard key={restaurant.place_id} restaurant={restaurant} />
         ))}
-      </ul>
-    </div>
+      </div>
+    </Layout>
   );
 }
 export async function getStaticProps() {
