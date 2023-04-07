@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
 const StyledHeader = styled.header`
   display: flex;
-  background-color: cyan;
+  background-color: #15aabf;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
@@ -21,7 +21,7 @@ const StyledFooter = styled.footer`
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: cyan;
+  background-color: #15aabf;
   color: #fff;
   font-size: 0.7rem;
   max-width: 100%;
@@ -41,22 +41,30 @@ const StyledTitle = styled.div`
 
 const StyledIcon = styled.span`
   font-size: 2rem;
+  margin-right: 1rem;
 `;
-
-const ButtonListItem = styled.li`
-  list-style-type: none;
+const ToggleButton = styled.button`
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 `;
-
 const Layout = ({ children, title }) => {
+  const [language, setLanguage] = useState("es");
+
+  const toggleLanguage = () => {
+    setLanguage(language === "es" ? "de" : "es");
+  };
+
   return (
     <>
       <StyledHeader>
         <StyledTitle>{title}</StyledTitle>
         <nav>
           <ul>
-            <li>
-              <Link href="/">Home</Link>
-            </li>
             <li>
               <Link href="/latin-restaurants">Latin Restaurants</Link>
             </li>
@@ -70,16 +78,13 @@ const Layout = ({ children, title }) => {
       <main>{children}</main>
 
       <StyledFooter>
-        <nav>
-          <ul>
-            <ButtonListItem>
-              <button>ES</button>
-            </ButtonListItem>
-            <ButtonListItem>
-              <button>DE</button>
-            </ButtonListItem>
-          </ul>
-        </nav>
+        <ToggleButton onClick={toggleLanguage}>
+          {language === "es" ? "ES" : "DE"}
+        </ToggleButton>
+
+        <StyledIcon>
+          <Link href="/">🏠</Link>
+        </StyledIcon>
         <StyledIcon>
           <Link href="/favorites">⭐</Link>
         </StyledIcon>

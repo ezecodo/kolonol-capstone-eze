@@ -7,14 +7,22 @@ const Title = styled.h1`
   margin-top: 100px; /* ajusta el margen superior según sea necesario */
 `;
 
+const StyledListContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 90px;
+  margin-bottom: 110px;
+  justify-content: center;
+`;
+
 export default function LatinRestaurants({ restaurants }) {
   return (
     <Layout title="Latin Restaurants">
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <StyledListContainer>
         {restaurants.map((restaurant) => (
           <RestaurantCard key={restaurant.place_id} restaurant={restaurant} />
         ))}
-      </div>
+      </StyledListContainer>
     </Layout>
   );
 }

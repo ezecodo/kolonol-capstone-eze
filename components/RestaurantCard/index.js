@@ -3,11 +3,12 @@ import styled from "styled-components";
 const Card = styled.div`
   display: flex;
   flex-direction: column;
-  width: 300px;
-  height: 400px;
+  width: 250px;
+  height: 180px;
   margin: 20px;
   background-color: white;
   border-radius: 5px;
+
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
 `;
 
