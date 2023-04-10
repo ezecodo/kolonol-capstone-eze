@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -52,8 +53,12 @@ const ToggleButton = styled.button`
   margin-left: 1rem;
   margin-right: 1rem;
 `;
-const Layout = ({ children, title }) => {
+
+const Layout = ({ children }) => {
   const [language, setLanguage] = useState("es");
+
+  const router = useRouter();
+  const { name } = router.query;
 
   const toggleLanguage = () => {
     setLanguage(language === "es" ? "de" : "es");
@@ -61,19 +66,7 @@ const Layout = ({ children, title }) => {
 
   return (
     <>
-      <StyledHeader>
-        <StyledTitle>{title}</StyledTitle>
-        <nav>
-          <ul>
-            <li>
-              <Link href="/latin-restaurants">Latin Restaurants</Link>
-            </li>
-            <li>
-              <Link href="/latin-music">Latin Music</Link>
-            </li>
-          </ul>
-        </nav>
-      </StyledHeader>
+      <StyledHeader> {`Hola, ${name}`}</StyledHeader>
 
       <main>{children}</main>
 
@@ -83,7 +76,9 @@ const Layout = ({ children, title }) => {
         </ToggleButton>
 
         <StyledIcon>
-          <Link href="/">🏠</Link>
+          <Link href="/" value={name}>
+            🏠
+          </Link>
         </StyledIcon>
         <StyledIcon>
           <Link href="/favorites">⭐</Link>
