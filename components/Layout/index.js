@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { useRouter } from "next/router";
@@ -44,6 +44,7 @@ const StyledIcon = styled.span`
   font-size: 2rem;
   margin-right: 1rem;
 `;
+
 const ToggleButton = styled.button`
   background-color: transparent;
   border: none;
@@ -56,9 +57,17 @@ const ToggleButton = styled.button`
 
 const Layout = ({ children }) => {
   const [language, setLanguage] = useState("es");
+  const [userName, setUserName] = useState("");
 
   const router = useRouter();
-  const { name } = router.query;
+
+  useEffect(() => {
+    // Retrieve the userName from localStorage when the component mounts
+    const storedUserName = localStorage.getItem("userName");
+    if (storedUserName) {
+      setUserName(storedUserName);
+    }
+  }, []);
 
   const toggleLanguage = () => {
     setLanguage(language === "es" ? "de" : "es");
@@ -66,7 +75,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <StyledHeader> {`Hola, ${name}`}</StyledHeader>
+      <StyledHeader> {`Hola, ${userName}`}</StyledHeader>
 
       <main>{children}</main>
 

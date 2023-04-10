@@ -7,6 +7,11 @@ import Layout from "../components/Layout";
 class MyApp extends App {
   state = {
     showHomeMessage: true,
+    userName: "",
+  };
+
+  handleUserNameChange = (userName) => {
+    this.setState({ userName });
   };
 
   componentDidMount() {
@@ -17,15 +22,15 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps } = this.props;
-    const { showHomeMessage } = this.state;
+    const { showHomeMessage, userName } = this.state;
 
     return (
       <>
         {showHomeMessage ? (
-          <HomeMessage />
+          <HomeMessage onUserNameChange={this.handleUserNameChange} />
         ) : (
-          <Layout>
-            <Component {...pageProps} />
+          <Layout userName={userName}>
+            <Component {...pageProps} userName={userName} />
           </Layout>
         )}
       </>

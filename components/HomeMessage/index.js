@@ -1,5 +1,5 @@
+// HomeMessage.js
 import styled from "styled-components";
-
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -38,6 +38,7 @@ const HomeMessage = () => {
   };
 
   const handleArrowClick = () => {
+    localStorage.setItem("userName", name); // save name to localStorage
     router.push({
       pathname: "/",
       query: { name },
