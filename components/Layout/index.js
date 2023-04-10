@@ -76,9 +76,7 @@ const Layout = ({ children }) => {
         </ToggleButton>
 
         <StyledIcon>
-          <Link href="/" value={name}>
-            🏠
-          </Link>
+          <Link href="/">🏠</Link>
         </StyledIcon>
         <StyledIcon>
           <Link href="/favorites">⭐</Link>
