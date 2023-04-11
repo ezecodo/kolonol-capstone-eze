@@ -16,7 +16,12 @@ export async function getRestaurantDetails(place_id) {
     `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place_id}&fields=name,formatted_address,formatted_phone_number,rating&key=${api_key}`
   );
   const data = await response.json();
-  return data.result;
+  if (data.status === "OK") {
+    return data.result;
+  } else {
+    console.error(data.status);
+    return {};
+  }
 }
 
 // Functions to fetch a list with Latin Music in Cologne

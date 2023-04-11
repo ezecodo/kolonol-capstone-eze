@@ -1,33 +1,37 @@
-import React, { useState, useEffect } from "react";
-import RestaurantCard from "../../components/RestaurantCard";
+import React from "react";
+import Link from "next/link";
+import styled from "styled-components";
 
-const Favorites = () => {
-  const [favoriteRestaurants, setFavoriteRestaurants] = useState([]);
+const Container = styled.div`
+  margin-top: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #15aabf;
+  color: #fff;
+  font-size: 0.7rem;
+  max-width: 100%;
+  height: 50px;
+  padding: 1rem;
+  box-shadow: 0px -5px 10px 0px rgba(0, 0, 0, 0.1);
+`;
 
-  useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+const StyledLink = styled(Link)`
+  color: #fff;
+  text-decoration: none;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+`;
 
-    // Retrieve restaurant details from localStorage
-    const savedRestaurants = favorites.map((place_id) => {
-      const restaurant = JSON.parse(localStorage.getItem(place_id));
-      return restaurant;
-    });
+const FavCategories = () => (
+  <Container>
+    <StyledLink href="/restaurants/FavoriteRestaurants">
+      Restaurantes
+    </StyledLink>
+    <StyledLink href="#">Música</StyledLink>
+    <StyledLink href="#">Teatro</StyledLink>
+  </Container>
+);
 
-    setFavoriteRestaurants(savedRestaurants);
-  }, []);
-
-  return (
-    <div>
-      <h1>Favorited Restaurants</h1>
-      {favoriteRestaurants.map((restaurant) => (
-        <RestaurantCard
-          key={restaurant.place_id}
-          restaurant={restaurant}
-          placeId={restaurant.place_id}
-        />
-      ))}
-    </div>
-  );
-};
-
-export default Favorites;
+export default FavCategories;

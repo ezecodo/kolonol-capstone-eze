@@ -88,7 +88,7 @@ const Layout = ({ children }) => {
           <Link href="/">🏠</Link>
         </StyledIcon>
         <StyledIcon>
-          <Link href="/favorites">⭐</Link>
+          <Link href="../favorites">⭐</Link>
         </StyledIcon>
       </StyledFooter>
     </>
