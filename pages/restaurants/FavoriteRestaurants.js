@@ -32,6 +32,11 @@ export default function LatinRestaurants({ restaurants }) {
     favorites.includes(restaurant.place_id)
   );
 
+  const handleUnfavorite = (place_id) => {
+    const updatedFavorites = favorites.filter((id) => id !== place_id);
+    setFavorites(updatedFavorites);
+  };
+
   return (
     <Layout title="Latin Restaurants">
       <StyledListContainer>
@@ -40,6 +45,7 @@ export default function LatinRestaurants({ restaurants }) {
             key={restaurant.place_id}
             restaurant={restaurant}
             isFavorite={favorites.includes(restaurant.place_id)}
+            onUnfavorite={handleUnfavorite}
           />
         ))}
       </StyledListContainer>

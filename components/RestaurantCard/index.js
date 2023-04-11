@@ -52,7 +52,7 @@ const BookmarkIconFull = styled.span`
   font-size: 1.2rem;
 `;
 
-function RestaurantCard({ restaurant, isFavorite }) {
+function RestaurantCard({ restaurant, isFavorite, onUnfavorite }) {
   const [bookmarked, setBookmarked] = useState(false);
 
   useEffect(() => {
@@ -73,6 +73,7 @@ function RestaurantCard({ restaurant, isFavorite }) {
       if (index > -1) {
         favorites.splice(index, 1);
       }
+      onUnfavorite(place_id);
     } else {
       // Add restaurant to favorites
       favorites.push(place_id);
