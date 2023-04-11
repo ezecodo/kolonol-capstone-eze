@@ -41,12 +41,8 @@ function Home() {
     <Container>
       <Wrapper>
         <Link href="../restaurants">Latin Restaurants</Link>
-        <Link href="/latin-music">
-          <Button>
-            <ButtonImage src="" />
-            Latin Music
-          </Button>
-        </Link>
+        <Link href="/latin-music">Latin Music</Link>
+        <Link href="/latin-music">Tandem</Link>
       </Wrapper>
     </Container>
   );
