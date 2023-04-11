@@ -6,6 +6,7 @@ export async function getLatinRestaurants() {
     `https://maps.googleapis.com/maps/api/place/textsearch/json?query=latin+restaurant&key=${api_key}`
   );
   const data = await response.json();
+
   return data.results;
 }
 
