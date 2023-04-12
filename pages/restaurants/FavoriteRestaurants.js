@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import PlaceCard from "../../components/PlaceCard";
 import Layout from "../../components/Layout";
-import { getRestaurantDetails } from "../../utils/google_places";
+import {
+  getLatinRestaurants,
+  getPlaceDetails,
+} from "../../utils/google_places";
 
 const Title = styled.h1`
   margin-top: 100px;
@@ -16,14 +19,14 @@ const StyledListContainer = styled.div`
   justify-content: center;
 `;
 
-export default function FavoriteRestaurants({ type }) {
+export default function LatinRestaurants({ places, type }) {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     const favorites =
       JSON.parse(localStorage.getItem(`${type}-favorites`)) || [];
     setFavorites(favorites);
-  }, [type]);
+  }, []);
 
   const handleUnfavorite = (place_id) => {
     const newFavorites = favorites.filter((id) => id !== place_id);
@@ -31,18 +34,40 @@ export default function FavoriteRestaurants({ type }) {
     setFavorites(newFavorites);
   };
 
+  const handleFavorite = (place_id) => {
+    const newFavorites = [...favorites, place_id];
+    localStorage.setItem(`${type}-favorites`, JSON.stringify(newFavorites));
+    setFavorites(newFavorites);
+  };
+
+  const favoritePlaces = places.filter((place) =>
+    favorites.includes(place.place_id)
+  );
+
   return (
-    <Layout title="Favorite Restaurants">
+    <Layout title={`${type} Places`}>
       <StyledListContainer>
-        {favorites.map((place_id) => (
+        {favoritePlaces.map((place) => (
           <PlaceCard
-            key={place_id}
-            place_id={place_id}
-            isFavorite={true}
+            key={place.place_id}
+            place={place}
+            isFavorite={favorites.includes(place.place_id)}
+            onFavorite={handleFavorite}
             onUnfavorite={handleUnfavorite}
           />
         ))}
       </StyledListContainer>
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const places = await getLatinRestaurants();
+  const placeDetails = await Promise.all(
+    places.map(async (place) => {
+      const details = await getPlaceDetails(place.place_id);
+      return { ...place, details };
+    })
+  );
+  return { props: { places: placeDetails, type: "Latin Restaurant" } };
 }
