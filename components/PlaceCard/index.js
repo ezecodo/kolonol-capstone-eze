@@ -11,6 +11,7 @@ const Card = styled.div`
   background-color: white;
   border-radius: 5px;
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 `;
 
 const Details = styled.div`
@@ -30,6 +31,7 @@ const Address = styled.p`
   margin-top: 5px;
   color: black;
 `;
+
 const Name = styled.h2`
   margin: 0;
 `;
@@ -38,8 +40,19 @@ const Phone = styled.p`
   margin: 10px 0 0 0;
 `;
 
-const Rating = styled.p`
-  margin: 10px 0 0 0;
+const RatingContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+`;
+
+const RatingLabel = styled.span`
+  margin-right: 5px;
+`;
+
+const RatingStars = styled.span`
+  color: #ff9900;
+  font-size: 1.2rem;
 `;
 
 const BookmarkButton = styled.button`
@@ -63,16 +76,17 @@ const BookmarkIconFull = styled.span`
 
 function PlaceCard({ place, isFavorite, onToggleFavorite }) {
   const [bookmarked, setBookmarked] = useState(false);
+  const [ratingStars, setRatingStars] = useState(0);
 
   useEffect(() => {
     setBookmarked(isFavorite);
-  }, [isFavorite]);
+    setRatingStars(Math.round(place.rating));
+  }, [isFavorite, place.rating]);
 
   const name = place.name;
   const description = place.description || place.types.join(", ");
   const address = place.formatted_address;
   const phone = place.formatted_phone_number;
-  const rating = place.rating;
 
   const handleBookmarkClick = () => {
     onToggleFavorite(place.place_id, !bookmarked);
@@ -93,7 +107,12 @@ function PlaceCard({ place, isFavorite, onToggleFavorite }) {
         <Description>{description}</Description>
         <Address>{address}</Address>
         <Phone>{phone}</Phone>
-        <Rating>Rating: {rating}</Rating>
+        <RatingContainer>
+          <RatingLabel>Rating:</RatingLabel>
+          {[...Array(ratingStars)].map((star, index) => (
+            <RatingStars key={index}>&#9733;</RatingStars>
+          ))}
+        </RatingContainer>
       </Details>
     </Card>
   );
