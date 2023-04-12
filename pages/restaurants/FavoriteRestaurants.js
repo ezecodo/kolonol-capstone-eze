@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import RestaurantCard from "../../components/RestaurantCard";
+import PlaceCard from "../../components/PlaceCard";
 import Layout from "../../components/Layout";
-import {
-  getLatinRestaurants,
-  getRestaurantDetails,
-} from "../../utils/google_places";
+import { getRestaurantDetails } from "../../utils/google_places";
 
 const Title = styled.h1`
   margin-top: 100px;
@@ -19,47 +16,33 @@ const StyledListContainer = styled.div`
   justify-content: center;
 `;
 
-export default function LatinRestaurants({ restaurants }) {
+export default function FavoriteRestaurants({ type }) {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const favorites =
+      JSON.parse(localStorage.getItem(`${type}-favorites`)) || [];
     setFavorites(favorites);
-  }, []);
-
-  // Filter out the non-favorite restaurants
-  const favoriteRestaurants = restaurants.filter((restaurant) =>
-    favorites.includes(restaurant.place_id)
-  );
+  }, [type]);
 
   const handleUnfavorite = (place_id) => {
-    const updatedFavorites = favorites.filter((id) => id !== place_id);
-    setFavorites(updatedFavorites);
+    const newFavorites = favorites.filter((id) => id !== place_id);
+    localStorage.setItem(`${type}-favorites`, JSON.stringify(newFavorites));
+    setFavorites(newFavorites);
   };
 
   return (
-    <Layout title="Latin Restaurants">
+    <Layout title="Favorite Restaurants">
       <StyledListContainer>
-        {favoriteRestaurants.map((restaurant) => (
-          <RestaurantCard
-            key={restaurant.place_id}
-            restaurant={restaurant}
-            isFavorite={favorites.includes(restaurant.place_id)}
+        {favorites.map((place_id) => (
+          <PlaceCard
+            key={place_id}
+            place_id={place_id}
+            isFavorite={true}
             onUnfavorite={handleUnfavorite}
           />
         ))}
       </StyledListContainer>
     </Layout>
   );
-}
-
-export async function getStaticProps() {
-  const restaurants = await getLatinRestaurants();
-  const restaurantDetails = await Promise.all(
-    restaurants.map(async (restaurant) => {
-      const details = await getRestaurantDetails(restaurant.place_id);
-      return { ...restaurant, details };
-    })
-  );
-  return { props: { restaurants: restaurantDetails } };
 }

@@ -17,12 +17,21 @@ const Details = styled.div`
   padding: 20px;
 `;
 
-const Name = styled.h2`
+const Description = styled.p`
+  font-size: 14px;
   margin: 0;
+  margin-top: 5px;
+  color: #666;
 `;
 
-const Description = styled.p`
-  margin: 10px 0 0 0;
+const Address = styled.p`
+  font-size: 14px;
+  margin: 0;
+  margin-top: 5px;
+  color: black;
+`;
+const Name = styled.h2`
+  margin: 0;
 `;
 
 const Phone = styled.p`
@@ -52,40 +61,43 @@ const BookmarkIconFull = styled.span`
   font-size: 1.2rem;
 `;
 
-function RestaurantCard({ restaurant, isFavorite, onUnfavorite }) {
+function PlaceCard({ place, isFavorite, onUnfavorite, onFavorite }) {
   const [bookmarked, setBookmarked] = useState(false);
 
   useEffect(() => {
     setBookmarked(isFavorite);
   }, [isFavorite]);
 
-  const name = restaurant.name;
-  const description = restaurant.formatted_address;
-  const phone = restaurant.formatted_phone_number;
-  const rating = restaurant.rating;
+  const name = place.name;
+  const description = place.description || place.types.join(", ");
+  const address = place.formatted_address;
+  const phone = place.formatted_phone_number;
+  const rating = place.rating;
 
   const handleBookmarkClick = (place_id) => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
     if (bookmarked) {
-      // Remove restaurant from favorites
+      // Remove place from favorites
       const index = favorites.indexOf(place_id);
       if (index > -1) {
         favorites.splice(index, 1);
       }
+      localStorage.setItem("favorites", JSON.stringify(favorites));
       onUnfavorite(place_id);
     } else {
-      // Add restaurant to favorites
+      // Add place to favorites
       favorites.push(place_id);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      onFavorite(place_id);
     }
 
-    localStorage.setItem("favorites", JSON.stringify(favorites));
     setBookmarked(!bookmarked);
   };
 
   return (
     <Card>
-      <BookmarkButton onClick={() => handleBookmarkClick(restaurant.place_id)}>
+      <BookmarkButton onClick={() => handleBookmarkClick(place.place_id)}>
         {bookmarked ? (
           <BookmarkIconFull>&#9733;</BookmarkIconFull>
         ) : (
@@ -95,6 +107,7 @@ function RestaurantCard({ restaurant, isFavorite, onUnfavorite }) {
       <Details>
         <Name>{name}</Name>
         <Description>{description}</Description>
+        <Address>{address}</Address>
         <Phone>{phone}</Phone>
         <Rating>Rating: {rating}</Rating>
       </Details>
@@ -102,4 +115,4 @@ function RestaurantCard({ restaurant, isFavorite, onUnfavorite }) {
   );
 }
 
-export default RestaurantCard;
+export default PlaceCard;

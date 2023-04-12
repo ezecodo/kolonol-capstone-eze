@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import RestaurantCard from "../../components/RestaurantCard";
+import PlaceCard from "../../components/PlaceCard";
 import Layout from "../../components/Layout";
 import {
   getLatinRestaurants,
-  getRestaurantDetails,
+  getPlaceDetails,
 } from "../../utils/google_places";
 
 const Title = styled.h1`
@@ -19,34 +19,35 @@ const StyledListContainer = styled.div`
   justify-content: center;
 `;
 
-export default function LatinRestaurants({ restaurants }) {
+export default function LatinRestaurants({ places, type }) {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const favorites =
+      JSON.parse(localStorage.getItem(`${type}-favorites`)) || [];
     setFavorites(favorites);
   }, []);
 
   const handleUnfavorite = (place_id) => {
     const newFavorites = favorites.filter((id) => id !== place_id);
-    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    localStorage.setItem(`${type}-favorites`, JSON.stringify(newFavorites));
     setFavorites(newFavorites);
   };
 
   const handleFavorite = (place_id) => {
     const newFavorites = [...favorites, place_id];
-    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    localStorage.setItem(`${type}-favorites`, JSON.stringify(newFavorites));
     setFavorites(newFavorites);
   };
 
   return (
-    <Layout title="Latin Restaurants">
+    <Layout title={`${type} Places`}>
       <StyledListContainer>
-        {restaurants.map((restaurant) => (
-          <RestaurantCard
-            key={restaurant.place_id}
-            restaurant={restaurant}
-            isFavorite={favorites.includes(restaurant.place_id)}
+        {places.map((place) => (
+          <PlaceCard
+            key={place.place_id}
+            place={place}
+            isFavorite={favorites.includes(place.place_id)}
             onFavorite={handleFavorite}
             onUnfavorite={handleUnfavorite}
           />
@@ -57,12 +58,12 @@ export default function LatinRestaurants({ restaurants }) {
 }
 
 export async function getStaticProps() {
-  const restaurants = await getLatinRestaurants();
-  const restaurantDetails = await Promise.all(
-    restaurants.map(async (restaurant) => {
-      const details = await getRestaurantDetails(restaurant.place_id);
-      return { ...restaurant, details };
+  const places = await getLatinRestaurants();
+  const placeDetails = await Promise.all(
+    places.map(async (place) => {
+      const details = await getPlaceDetails(place.place_id);
+      return { ...place, details };
     })
   );
-  return { props: { restaurants: restaurantDetails } };
+  return { props: { places: placeDetails, type: "Latin Restaurant" } };
 }

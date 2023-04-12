@@ -26,7 +26,7 @@ const StyledLink = styled(Link)`
 
 const FavCategories = () => (
   <Container>
-    <StyledLink href="/restaurants/FavoriteRestaurants">
+    <StyledLink href="/restaurants/FavoriteRestaurants?type=Latin%20Restaurant">
       Restaurantes
     </StyledLink>
     <StyledLink href="#">Música</StyledLink>
