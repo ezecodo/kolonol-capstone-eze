@@ -26,16 +26,16 @@ export default function LatinRestaurants({ places, type }) {
     const favorites =
       JSON.parse(localStorage.getItem(`${type}-favorites`)) || [];
     setFavorites(favorites);
-  }, []);
+  }, [type]);
 
-  const handleToggleFavorite = (place_id, isFavorite) => {
+  function handleToggleFavorite(place_id, isFavorite) {
     const newFavorites = isFavorite
       ? [...favorites, place_id]
       : favorites.filter((id) => id !== place_id);
 
     localStorage.setItem(`${type}-favorites`, JSON.stringify(newFavorites));
     setFavorites(newFavorites);
-  };
+  }
 
   const favoritePlaces = places.filter((place) =>
     favorites.includes(place.place_id)

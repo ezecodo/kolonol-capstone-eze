@@ -26,7 +26,7 @@ export default function LatinRestaurants({ places, type }) {
     const favorites =
       JSON.parse(localStorage.getItem(`${type}-favorites`)) || [];
     setFavorites(favorites);
-  }, []);
+  }, [type]);
 
   const handleToggleFavorite = (place_id) => {
     const newFavorites = favorites.includes(place_id)
