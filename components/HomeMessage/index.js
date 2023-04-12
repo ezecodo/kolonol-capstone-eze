@@ -1,4 +1,3 @@
-// HomeMessage.js
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -12,6 +11,7 @@ const Container = styled.div`
   max-width: 320px;
   margin: 0 auto;
   gap: 0.5rem;
+  text-align: center; /* Agrega este estilo para centrar el contenido */
 `;
 
 const Button = styled.button`
@@ -22,6 +22,26 @@ const Button = styled.button`
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
+`;
+
+const InputContainer = styled.label`
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+`;
+
+const Input = styled.input`
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+`;
+
+const Counter = styled.div`
+  font-size: 0.8rem;
+  color: ${(props) =>
+    props.count > 0
+      ? "black"
+      : "gray"}; /* Agrega este estilo para el color gris */
 `;
 
 const HomeMessage = () => {
@@ -45,14 +65,26 @@ const HomeMessage = () => {
     });
   };
 
+  const handleInputKeyDown = (event) => {
+    if (name.length >= 15 && event.key !== "Backspace") {
+      event.preventDefault();
+    }
+  };
+
   return (
     <Container>
       {showInput ? (
         <>
-          <label>
-            Please enter your name:
-            <input type="text" value={name} onChange={handleInputChange} />
-          </label>
+          <InputContainer>
+            <div>Please enter your name:</div>
+            <Input
+              type="text"
+              value={name}
+              onChange={handleInputChange}
+              onKeyDown={handleInputKeyDown}
+            />
+            <Counter count={name.length}>0/15</Counter>
+          </InputContainer>
           <Button onClick={handleArrowClick}>➡</Button>
         </>
       ) : (

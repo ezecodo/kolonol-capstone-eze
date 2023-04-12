@@ -3,7 +3,7 @@
 export async function getLatinRestaurants() {
   const api_key = "AIzaSyC0l9IYbE3FQbMjcTRnERM3BGw6y_nQUhM";
   const response = await fetch(
-    `https://maps.googleapis.com/maps/api/place/textsearch/json?query=latin+restaurant+cologne+germany&key=${api_key}`
+    `https://maps.googleapis.com/maps/api/place/textsearch/json?query=latin+restaurants+cologne+germany+comida+latina+&key=${api_key}`
   );
   const data = await response.json();
 
