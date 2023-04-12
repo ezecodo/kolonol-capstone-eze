@@ -28,14 +28,10 @@ export default function LatinRestaurants({ places, type }) {
     setFavorites(favorites);
   }, []);
 
-  const handleUnfavorite = (place_id) => {
-    const newFavorites = favorites.filter((id) => id !== place_id);
-    localStorage.setItem(`${type}-favorites`, JSON.stringify(newFavorites));
-    setFavorites(newFavorites);
-  };
-
-  const handleFavorite = (place_id) => {
-    const newFavorites = [...favorites, place_id];
+  const handleToggleFavorite = (place_id) => {
+    const newFavorites = favorites.includes(place_id)
+      ? favorites.filter((id) => id !== place_id)
+      : [...favorites, place_id];
     localStorage.setItem(`${type}-favorites`, JSON.stringify(newFavorites));
     setFavorites(newFavorites);
   };
@@ -48,8 +44,7 @@ export default function LatinRestaurants({ places, type }) {
             key={place.place_id}
             place={place}
             isFavorite={favorites.includes(place.place_id)}
-            onFavorite={handleFavorite}
-            onUnfavorite={handleUnfavorite}
+            onToggleFavorite={handleToggleFavorite}
           />
         ))}
       </StyledListContainer>

@@ -61,7 +61,7 @@ const BookmarkIconFull = styled.span`
   font-size: 1.2rem;
 `;
 
-function PlaceCard({ place, isFavorite, onUnfavorite, onFavorite }) {
+function PlaceCard({ place, isFavorite, onToggleFavorite }) {
   const [bookmarked, setBookmarked] = useState(false);
 
   useEffect(() => {
@@ -74,30 +74,14 @@ function PlaceCard({ place, isFavorite, onUnfavorite, onFavorite }) {
   const phone = place.formatted_phone_number;
   const rating = place.rating;
 
-  const handleBookmarkClick = (place_id) => {
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-
-    if (bookmarked) {
-      // Remove place from favorites
-      const index = favorites.indexOf(place_id);
-      if (index > -1) {
-        favorites.splice(index, 1);
-      }
-      localStorage.setItem("favorites", JSON.stringify(favorites));
-      onUnfavorite(place_id);
-    } else {
-      // Add place to favorites
-      favorites.push(place_id);
-      localStorage.setItem("favorites", JSON.stringify(favorites));
-      onFavorite(place_id);
-    }
-
+  const handleBookmarkClick = () => {
+    onToggleFavorite(place.place_id, !bookmarked);
     setBookmarked(!bookmarked);
   };
 
   return (
     <Card>
-      <BookmarkButton onClick={() => handleBookmarkClick(place.place_id)}>
+      <BookmarkButton onClick={handleBookmarkClick}>
         {bookmarked ? (
           <BookmarkIconFull>&#9733;</BookmarkIconFull>
         ) : (
