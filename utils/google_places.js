@@ -29,7 +29,7 @@ export async function getRestaurantDetails(place_id) {
 export async function getLatinMusicPlaces() {
   const api_key = "AIzaSyC0l9IYbE3FQbMjcTRnERM3BGw6y_nQUhM";
   const response = await fetch(
-    `https://maps.googleapis.com/maps/api/place/textsearch/json?query=latin+music+cologne&key=${api_key}`
+    `https://maps.googleapis.com/maps/api/place/textsearch/json?query=latin+music+cologne+musica+latina+colonia+alemania&key=${api_key}`
   );
   const data = await response.json();
   return data.results;
