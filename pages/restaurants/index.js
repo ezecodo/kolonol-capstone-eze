@@ -6,6 +6,7 @@ import {
   getLatinRestaurants,
   getPlaceDetails,
 } from "../../utils/google_places";
+import BackButtonArrow from "../../components/BackButtonHome";
 
 const Title = styled.h1`
   margin-top: 100px;
@@ -38,6 +39,7 @@ export default function LatinRestaurants({ places, type }) {
 
   return (
     <Layout title={`${type} Places`}>
+      <BackButtonArrow to={"/"} />
       <StyledListContainer>
         {places.map((place) => (
           <PlaceCard

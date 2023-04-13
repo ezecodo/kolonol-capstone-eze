@@ -6,6 +6,7 @@ import {
   getLatinMusicPlaces,
   getPlaceDetails,
 } from "../../utils/google_places";
+import BackButtonArrow from "../../components/BackButtonHome";
 
 const Title = styled.h1`
   margin-top: 100px;
@@ -44,6 +45,7 @@ export default function LatinClubs({ places, type }) {
   return (
     <Layout title={`${type} Places`}>
       <StyledListContainer>
+        <BackButtonArrow to={"/favorites"} />
         {favoritePlaces.map((place) => (
           <PlaceCard
             key={place.place_id}
