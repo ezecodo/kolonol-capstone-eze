@@ -3,6 +3,7 @@ import App from "next/app";
 import { Router } from "next/router";
 import HomeMessage from "../components/HomeMessage";
 import Layout from "../components/Layout";
+import GlobalStyle from "../styles/globalStyles";
 
 class MyApp extends App {
   state = {
@@ -30,6 +31,7 @@ class MyApp extends App {
           <HomeMessage onUserNameChange={this.handleUserNameChange} />
         ) : (
           <Layout userName={userName}>
+            <GlobalStyle />
             <Component {...pageProps} userName={userName} />
           </Layout>
         )}
