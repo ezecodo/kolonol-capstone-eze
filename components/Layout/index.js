@@ -15,7 +15,7 @@ const StyledHeader = styled.header`
   right: 0;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   height: 50px;
-  z-index: 1; /* add this */
+  z-index: 1;
 `;
 const StyledFooter = styled.footer`
   display: flex;
