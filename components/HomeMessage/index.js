@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 const Container = styled.div`
+  margin-top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,9 +12,9 @@ const Container = styled.div`
   max-width: 320px;
   margin: 0 auto;
   gap: 0.5rem;
-  text-align: center; /* Agrega este estilo para centrar el contenido */
+  text-align: center;
+  padding-bottom: 0.25rem;
 `;
-
 const Button = styled.button`
   font-size: 1rem;
   padding: 0.5rem 1rem;
@@ -38,10 +39,27 @@ const Input = styled.input`
 
 const Counter = styled.div`
   font-size: 0.8rem;
-  color: ${(props) =>
-    props.count > 0
-      ? "black"
-      : "gray"}; /* Agrega este estilo para el color gris */
+  color: ${(props) => (props.count > 0 ? "black" : "gray")};
+`;
+
+const PacificoTitle = styled.h1`
+  font-family: "Pacifico", cursive;
+  font-size: 75px;
+  margin-bottom: 5px;
+  background-size: auto;
+`;
+
+const LangButtonContainer = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`;
+
+const Subtitle = styled.p`
+  font-family: monospace;
+  font-size: 1.2rem;
+  margin-top: 0.1rem;
+
+  margin-bottom: 1rem;
 `;
 
 const HomeMessage = () => {
@@ -76,7 +94,7 @@ const HomeMessage = () => {
       {showInput ? (
         <>
           <InputContainer>
-            <div>Please enter your name:</div>
+            <div>Ingresa tu nombre:</div>
             <Input
               type="text"
               value={name}
@@ -89,8 +107,12 @@ const HomeMessage = () => {
         </>
       ) : (
         <>
-          <Button onClick={handleButtonClick}>ES</Button>
-          <Button onClick={handleButtonClick}>DE</Button>
+          <PacificoTitle>Köloñol</PacificoTitle>
+          <Subtitle>Köln en español</Subtitle>
+          <LangButtonContainer>
+            <Button onClick={handleButtonClick}>ES</Button>
+            <Button onClick={handleButtonClick}>DE</Button>
+          </LangButtonContainer>
         </>
       )}
     </Container>
