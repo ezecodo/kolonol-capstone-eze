@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import PacificoTitle from "../Logo";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -75,7 +76,15 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <StyledHeader> {`Hola, ${userName}`}</StyledHeader>
+      <StyledHeader>
+        {" "}
+        {`Hola, ${userName}`}
+        <PacificoTitle
+          color="white"
+          fontSize="45px"
+          textShadow="8px 2px 2px #000"
+        />
+      </StyledHeader>
 
       <main>{children}</main>
 

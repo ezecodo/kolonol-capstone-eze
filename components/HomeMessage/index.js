@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import PacificoTitle from "../Logo";
 
 const Container = styled.div`
   margin-top: 0;
@@ -40,13 +41,6 @@ const Input = styled.input`
 const Counter = styled.div`
   font-size: 0.8rem;
   color: ${(props) => (props.count > 0 ? "black" : "gray")};
-`;
-
-const PacificoTitle = styled.h1`
-  font-family: "Pacifico", cursive;
-  font-size: 75px;
-  margin-bottom: 5px;
-  background-size: auto;
 `;
 
 const LangButtonContainer = styled.div`
@@ -107,7 +101,7 @@ const HomeMessage = () => {
         </>
       ) : (
         <>
-          <PacificoTitle>Köloñol</PacificoTitle>
+          <PacificoTitle />
           <Subtitle>Köln en español</Subtitle>
           <LangButtonContainer>
             <Button onClick={handleButtonClick}>ES</Button>
