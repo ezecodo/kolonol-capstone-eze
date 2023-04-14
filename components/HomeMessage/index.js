@@ -95,7 +95,8 @@ const HomeMessage = () => {
               onChange={handleInputChange}
               onKeyDown={handleInputKeyDown}
             />
-            <Counter count={name.length}>0/15</Counter>
+            <Counter count={name.length}>{name.length}/15</Counter>{" "}
+            {/* Aquí está el cambio */}
           </InputContainer>
           <Button onClick={handleArrowClick}>➡</Button>
         </>
