@@ -18,6 +18,13 @@ const StyledHeader = styled.header`
   height: 50px;
   z-index: 1;
 `;
+
+const Greeting = styled.div`
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-left: 1rem;
+`;
 const StyledFooter = styled.footer`
   display: flex;
   justify-content: space-between;
@@ -63,7 +70,6 @@ const Layout = ({ children }) => {
   const router = useRouter();
 
   useEffect(() => {
-    // Retrieve the userName from localStorage when the component mounts
     const storedUserName = localStorage.getItem("userName");
     if (storedUserName) {
       setUserName(storedUserName);
@@ -77,13 +83,14 @@ const Layout = ({ children }) => {
   return (
     <>
       <StyledHeader>
-        {" "}
-        {`Hola, ${userName}`}
-        <PacificoTitle
-          color="white"
-          fontSize="45px"
-          textShadow="8px 2px 2px #000"
-        />
+        <Greeting>{`Hola, ${userName}`}</Greeting>
+        <StyledTitle>
+          <PacificoTitle
+            color="white"
+            fontSize="45px"
+            textShadow="8px 2px 2px #000"
+          />
+        </StyledTitle>
       </StyledHeader>
 
       <main>{children}</main>
