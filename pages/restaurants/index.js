@@ -23,7 +23,6 @@ const StyledListContainer = styled.div`
 export default function LatinRestaurants({ places, type }) {
   const [favorites, setFavorites] = useState([]);
 
-  // Función para recuperar favoritos y actualizar el estado
   const updateFavorites = () => {
     const favorites =
       JSON.parse(localStorage.getItem(`${type}-favorites`)) || [];

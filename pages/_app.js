@@ -4,6 +4,7 @@ import { Router } from "next/router";
 import HomeMessage from "../components/HomeMessage";
 import Layout from "../components/Layout";
 import GlobalStyle from "../styles/globalStyles";
+import { HighlightProvider } from "../components/HighlightProvider";
 
 class MyApp extends App {
   state = {
@@ -30,10 +31,12 @@ class MyApp extends App {
         {showHomeMessage ? (
           <HomeMessage onUserNameChange={this.handleUserNameChange} />
         ) : (
-          <Layout userName={userName}>
-            <GlobalStyle />
-            <Component {...pageProps} userName={userName} />
-          </Layout>
+          <HighlightProvider>
+            <Layout userName={userName}>
+              <GlobalStyle />
+              <Component {...pageProps} userName={userName} />
+            </Layout>
+          </HighlightProvider>
         )}
       </>
     );

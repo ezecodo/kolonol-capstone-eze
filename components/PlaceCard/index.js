@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
+import { useHighlight } from "../HighlightProvider";
 
 const Card = styled.div`
   position: relative;
@@ -142,6 +143,9 @@ function PlaceCard({ place, isFavorite, onToggleFavorite }) {
   const [ratingStars, setRatingStars] = useState(0);
   const [showNoteWindow, setShowNoteWindow] = useState(false);
   const [note, setNote] = useState("");
+  const { setHighlightStar } = useHighlight();
+
+  const bookmarkButtonRef = useRef(null);
 
   useEffect(() => {
     setBookmarked(isFavorite);
@@ -157,7 +161,7 @@ function PlaceCard({ place, isFavorite, onToggleFavorite }) {
   };
   const handleSubmitNote = (e) => {
     e.preventDefault();
-    // Aquí puedes enviar la nota, por ejemplo, a una API o guardarla en el estado de un componente padre
+
     console.log("Nota enviada:", note);
     setShowNoteWindow(false);
   };
@@ -167,14 +171,19 @@ function PlaceCard({ place, isFavorite, onToggleFavorite }) {
   const address = place.formatted_address;
   const phone = place.formatted_phone_number;
 
-  const handleBookmarkClick = () => {
-    onToggleFavorite(place.place_id, !bookmarked);
+  function handleBookmarkClick() {
     setBookmarked(!bookmarked);
-  };
+    onToggleFavorite(place.place_id, !bookmarked);
+
+    setHighlightStar(true);
+    setTimeout(() => {
+      setHighlightStar(false);
+    }, 1000);
+  }
 
   return (
     <Card>
-      <BookmarkButton onClick={handleBookmarkClick}>
+      <BookmarkButton ref={bookmarkButtonRef} onClick={handleBookmarkClick}>
         {bookmarked ? (
           <BookmarkIconFull>&#9733;</BookmarkIconFull>
         ) : (

@@ -3,6 +3,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import PacificoTitle from "../Logo";
+import { useHighlight } from "../HighlightProvider";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -49,10 +50,36 @@ const StyledTitle = styled.div`
 `;
 
 const StyledIcon = styled.span`
-  font-size: 2rem;
+  font-size: 50px;
   margin-right: 1rem;
 `;
 
+const StyledIconFavorites = styled.div`
+  font-size: 50px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  &.favorite-btn-flash {
+    animation: favorite-btn-flash 1s;
+  }
+
+  @keyframes favorite-btn-flash {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+`;
 const ToggleButton = styled.button`
   background-color: transparent;
   border: none;
@@ -68,6 +95,7 @@ const Layout = ({ children }) => {
   const [userName, setUserName] = useState("");
 
   const router = useRouter();
+  const { highlightStar } = useHighlight();
 
   useEffect(() => {
     const storedUserName = localStorage.getItem("userName");
@@ -103,9 +131,12 @@ const Layout = ({ children }) => {
         <StyledIcon>
           <Link href="/">🏠</Link>
         </StyledIcon>
-        <StyledIcon>
+        <StyledIconFavorites
+          id="favorite-btn"
+          className={highlightStar ? "favorite-btn-flash" : ""}
+        >
           <Link href="../favorites">⭐</Link>
-        </StyledIcon>
+        </StyledIconFavorites>
       </StyledFooter>
     </>
   );
