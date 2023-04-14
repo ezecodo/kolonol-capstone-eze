@@ -23,11 +23,17 @@ const StyledListContainer = styled.div`
 export default function LatinRestaurants({ places, type }) {
   const [favorites, setFavorites] = useState([]);
 
-  useEffect(() => {
+  // Función para recuperar favoritos y actualizar el estado
+  const updateFavorites = () => {
     const favorites =
       JSON.parse(localStorage.getItem(`${type}-favorites`)) || [];
     setFavorites(favorites);
-  }, [type]);
+    console.log("Favorites:", favorites);
+  };
+
+  useEffect(() => {
+    updateFavorites();
+  }, []);
 
   const handleToggleFavorite = (place_id) => {
     const newFavorites = favorites.includes(place_id)
@@ -47,6 +53,7 @@ export default function LatinRestaurants({ places, type }) {
             place={place}
             isFavorite={favorites.includes(place.place_id)}
             onToggleFavorite={handleToggleFavorite}
+            showNoteButton={false}
           />
         ))}
       </StyledListContainer>

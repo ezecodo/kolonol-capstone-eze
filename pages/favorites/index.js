@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 
@@ -45,19 +45,40 @@ const Container = styled.div`
 `;
 
 function FavCategories() {
+  const [hasLatinRestaurants, setHasLatinRestaurants] = useState(false);
+  const [hasLatinClubs, setHasLatinClubs] = useState(false);
+
+  useEffect(() => {
+    const latinRestaurantFavorites =
+      JSON.parse(localStorage.getItem("Latin Restaurant-favorites")) || [];
+    if (latinRestaurantFavorites.length > 0) {
+      setHasLatinRestaurants(true);
+    }
+
+    const latinClubFavorites =
+      JSON.parse(localStorage.getItem("Latin Club-favorites")) || [];
+    if (latinClubFavorites.length > 0) {
+      setHasLatinClubs(true);
+    }
+  }, []);
+
   return (
     <Container>
       <Wrapper>
-        <Link href="/restaurants/FavoriteRestaurants">
-          <StyledLink>
-            <Button>Latin Restaurants</Button>
-          </StyledLink>
-        </Link>
-        <Link href="/night-life/FavoriteClubs">
-          <StyledLink>
-            <Button>Latin Music</Button>
-          </StyledLink>
-        </Link>
+        {hasLatinRestaurants && (
+          <Link href="/restaurants/FavoriteRestaurants">
+            <StyledLink>
+              <Button>Latin Restaurants</Button>
+            </StyledLink>
+          </Link>
+        )}
+        {hasLatinClubs && (
+          <Link href="/night-life/FavoriteClubs">
+            <StyledLink>
+              <Button>Latin Clubs</Button>
+            </StyledLink>
+          </Link>
+        )}
         <Link href="/latin-music">
           <StyledLink>
             <Button>Tandem</Button>
