@@ -151,6 +151,15 @@ function PlaceCard({
   const [ratingStars, setRatingStars] = useState(0);
   const [showNoteWindow, setShowNoteWindow] = useState(false);
   const [note, setNote] = useState("");
+  useEffect(() => {
+    if (favorites) {
+      const currentFavorite = favorites.find(
+        (fav) => fav.place_id === place.place_id
+      );
+      const currentNote = currentFavorite ? currentFavorite.note : "";
+      setNote(currentNote);
+    }
+  }, [favorites, place.place_id]);
   const { setHighlightStar } = useHighlight();
 
   const bookmarkButtonRef = useRef(null);
@@ -226,7 +235,7 @@ function PlaceCard({
       )}
       {showNoteButton !== false && (
         <AddNoteButton onClick={handleAddNoteClick} isOpen={showNoteWindow}>
-          {showNoteWindow ? "×" : "+"}
+          {showNoteWindow ? "×" : note ? "EditNote" : "AddNote"}
         </AddNoteButton>
       )}
     </Card>
