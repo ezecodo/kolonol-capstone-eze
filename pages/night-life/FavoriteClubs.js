@@ -29,29 +29,61 @@ export default function LatinClubs({ places, type }) {
     setFavorites(favorites);
   }, [type]);
 
-  function handleToggleFavorite(place_id, isFavorite) {
-    const newFavorites = isFavorite
-      ? [...favorites, place_id]
-      : favorites.filter((id) => id !== place_id);
+  const handleToggleFavorite = (place_id) => {
+    const placeIndex = favorites.findIndex((fav) => fav.place_id === place_id);
 
-    localStorage.setItem(`${type}-favorites`, JSON.stringify(newFavorites));
-    setFavorites(newFavorites);
-  }
-
+    if (placeIndex !== -1) {
+      // Si el lugar ya está en los favoritos, lo eliminamos
+      const newFavorites = favorites.filter((fav) => fav.place_id !== place_id);
+      localStorage.setItem(`${type}-favorites`, JSON.stringify(newFavorites));
+      setFavorites(newFavorites);
+    } else {
+      // Si el lugar no está en los favoritos, lo agregamos con una nota en blanco
+      const newFavorite = { place_id, note: "" };
+      const newFavorites = [...favorites, newFavorite];
+      localStorage.setItem(`${type}-favorites`, JSON.stringify(newFavorites));
+      setFavorites(newFavorites);
+    }
+  };
   const favoritePlaces = places.filter((place) =>
-    favorites.includes(place.place_id)
+    favorites.some((fav) => fav.place_id === place.place_id)
   );
 
+  const handleUpdateNote = (place_id, note) => {
+    const favoritePlaceIndex = favorites.findIndex(
+      (fav) => fav.place_id === place_id
+    );
+
+    if (favoritePlaceIndex !== -1) {
+      const updatedFavorites = [...favorites];
+      updatedFavorites[favoritePlaceIndex] = {
+        ...updatedFavorites[favoritePlaceIndex],
+        note: note,
+      };
+
+      localStorage.setItem(
+        `${type}-favorites`,
+        JSON.stringify(updatedFavorites)
+      );
+      setFavorites(updatedFavorites);
+    }
+  };
   return (
     <Layout title={`${type} Places`}>
+      <BackButtonArrow to={"../favorites"} />
       <StyledListContainer>
-        <BackButtonArrow to={"/favorites"} />
         {favoritePlaces.map((place) => (
           <PlaceCard
             key={place.place_id}
             place={place}
-            isFavorite={favorites.includes(place.place_id)}
+            isFavorite={favorites.some(
+              (fav) => fav.place_id === place.place_id
+            )}
             onToggleFavorite={handleToggleFavorite}
+            showNoteButton={true}
+            favorites={favorites} // Añade esta línea
+            type={type}
+            onUpdateNote={handleUpdateNote} // Añade esta línea también
           />
         ))}
       </StyledListContainer>

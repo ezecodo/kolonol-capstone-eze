@@ -20,26 +20,36 @@ const StyledListContainer = styled.div`
   justify-content: center;
 `;
 
-export default function LatinClubs({ places, type, onBackButtonClick }) {
+export default function LatinClubs({ places, type }) {
   const [favorites, setFavorites] = useState([]);
 
-  useEffect(() => {
+  const updateFavorites = () => {
     const favorites =
       JSON.parse(localStorage.getItem(`${type}-favorites`)) || [];
     setFavorites(favorites);
-  }, [type]);
-
-  const handleToggleFavorite = (place_id) => {
-    const newFavorites = favorites.includes(place_id)
-      ? favorites.filter((id) => id !== place_id)
-      : [...favorites, place_id];
-    localStorage.setItem(`${type}-favorites`, JSON.stringify(newFavorites));
-    setFavorites(newFavorites);
+    console.log("Favorites:", favorites);
   };
 
-  const favoritePlaces = places.filter((place) =>
-    favorites.includes(place.place_id)
-  );
+  useEffect(() => {
+    updateFavorites();
+  }, []);
+
+  const handleToggleFavorite = (place_id) => {
+    const placeIndex = favorites.findIndex((fav) => fav.place_id === place_id);
+
+    if (placeIndex !== -1) {
+      // Si el lugar ya está en los favoritos, lo eliminamos
+      const newFavorites = favorites.filter((fav) => fav.place_id !== place_id);
+      localStorage.setItem(`${type}-favorites`, JSON.stringify(newFavorites));
+      setFavorites(newFavorites);
+    } else {
+      // Si el lugar no está en los favoritos, lo agregamos con una nota en blanco
+      const newFavorite = { place_id, note: "" };
+      const newFavorites = [...favorites, newFavorite];
+      localStorage.setItem(`${type}-favorites`, JSON.stringify(newFavorites));
+      setFavorites(newFavorites);
+    }
+  };
 
   return (
     <Layout title={`${type} Places`}>
@@ -49,7 +59,9 @@ export default function LatinClubs({ places, type, onBackButtonClick }) {
           <PlaceCard
             key={place.place_id}
             place={place}
-            isFavorite={favorites.includes(place.place_id)}
+            isFavorite={favorites.some(
+              (fav) => fav.place_id === place.place_id
+            )}
             onToggleFavorite={handleToggleFavorite}
             showNoteButton={false}
           />
