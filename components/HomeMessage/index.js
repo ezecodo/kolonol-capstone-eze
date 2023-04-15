@@ -92,6 +92,7 @@ const HomeMessage = () => {
             <Input
               type="text"
               value={name}
+              maxLength={15}
               onChange={handleInputChange}
               onKeyDown={handleInputKeyDown}
             />
