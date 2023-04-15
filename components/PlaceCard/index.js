@@ -145,6 +145,7 @@ function PlaceCard({
   showNoteButton,
   favorites,
   type,
+  onUpdateNote,
 }) {
   const [bookmarked, setBookmarked] = useState(false);
   const [ratingStars, setRatingStars] = useState(0);
@@ -169,34 +170,11 @@ function PlaceCard({
   const handleSubmitNote = (e) => {
     e.preventDefault();
 
-    // Buscar el objeto de lugar favorito en la lista de favoritos
-    const favoritePlaceIndex = favorites.findIndex(
-      (fav) => fav.place_id === place.place_id
-    );
-
-    // Si se encuentra el lugar en la lista de favoritos
-    if (favoritePlaceIndex !== -1) {
-      // Actualizar la nota del objeto de lugar favorito
-      const updatedFavorites = [...favorites];
-      updatedFavorites[favoritePlaceIndex] = {
-        ...updatedFavorites[favoritePlaceIndex],
-        note: note,
-      };
-
-      // Guardar la lista actualizada de favoritos en localStorage
-      localStorage.setItem(
-        `${type}-favorites`,
-        JSON.stringify(updatedFavorites)
-      );
-
-      // Actualizar la lista de favoritos en el estado
-      setFavorites(updatedFavorites);
-    }
+    onUpdateNote(place.place_id, note); // Usa onUpdateNote aquí
 
     console.log("Nota enviada:", note);
     setShowNoteWindow(false);
   };
-
   const name = place.name;
   const description = place.description || place.types.join(", ");
   const address = place.formatted_address;

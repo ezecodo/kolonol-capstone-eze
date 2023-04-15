@@ -50,6 +50,26 @@ export default function FavoriteRestaurants({ places, type }) {
     favorites.some((fav) => fav.place_id === place.place_id)
   );
 
+  const handleUpdateNote = (place_id, note) => {
+    const favoritePlaceIndex = favorites.findIndex(
+      (fav) => fav.place_id === place_id
+    );
+
+    if (favoritePlaceIndex !== -1) {
+      const updatedFavorites = [...favorites];
+      updatedFavorites[favoritePlaceIndex] = {
+        ...updatedFavorites[favoritePlaceIndex],
+        note: note,
+      };
+
+      localStorage.setItem(
+        `${type}-favorites`,
+        JSON.stringify(updatedFavorites)
+      );
+      setFavorites(updatedFavorites);
+    }
+  };
+
   return (
     <Layout title={`${type} Places`}>
       <BackButtonArrow to={"../favorites"} />
@@ -64,7 +84,8 @@ export default function FavoriteRestaurants({ places, type }) {
             onToggleFavorite={handleToggleFavorite}
             showNoteButton={true}
             favorites={favorites} // Añade esta línea
-            type={type} // Añade esta línea también
+            type={type}
+            onUpdateNote={handleUpdateNote} // Añade esta línea también
           />
         ))}
       </StyledListContainer>
