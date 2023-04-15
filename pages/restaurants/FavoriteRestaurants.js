@@ -62,7 +62,9 @@ export default function FavoriteRestaurants({ places, type }) {
               (fav) => fav.place_id === place.place_id
             )}
             onToggleFavorite={handleToggleFavorite}
-            showNoteButton={false}
+            showNoteButton={true}
+            favorites={favorites} // Añade esta línea
+            type={type} // Añade esta línea también
           />
         ))}
       </StyledListContainer>

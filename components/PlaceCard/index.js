@@ -138,7 +138,14 @@ const BookmarkIconFull = styled.span`
   font-size: 1.2rem;
 `;
 
-function PlaceCard({ place, isFavorite, onToggleFavorite, showNoteButton }) {
+function PlaceCard({
+  place,
+  isFavorite,
+  onToggleFavorite,
+  showNoteButton,
+  favorites,
+  type,
+}) {
   const [bookmarked, setBookmarked] = useState(false);
   const [ratingStars, setRatingStars] = useState(0);
   const [showNoteWindow, setShowNoteWindow] = useState(false);
@@ -161,6 +168,30 @@ function PlaceCard({ place, isFavorite, onToggleFavorite, showNoteButton }) {
   };
   const handleSubmitNote = (e) => {
     e.preventDefault();
+
+    // Buscar el objeto de lugar favorito en la lista de favoritos
+    const favoritePlaceIndex = favorites.findIndex(
+      (fav) => fav.place_id === place.place_id
+    );
+
+    // Si se encuentra el lugar en la lista de favoritos
+    if (favoritePlaceIndex !== -1) {
+      // Actualizar la nota del objeto de lugar favorito
+      const updatedFavorites = [...favorites];
+      updatedFavorites[favoritePlaceIndex] = {
+        ...updatedFavorites[favoritePlaceIndex],
+        note: note,
+      };
+
+      // Guardar la lista actualizada de favoritos en localStorage
+      localStorage.setItem(
+        `${type}-favorites`,
+        JSON.stringify(updatedFavorites)
+      );
+
+      // Actualizar la lista de favoritos en el estado
+      setFavorites(updatedFavorites);
+    }
 
     console.log("Nota enviada:", note);
     setShowNoteWindow(false);
