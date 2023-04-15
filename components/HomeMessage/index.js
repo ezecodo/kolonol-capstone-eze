@@ -26,6 +26,11 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const ErrorMessage = styled.div`
+  color: red;
+  font-size: 0.8rem;
+`;
+
 const InputContainer = styled.label`
   display: flex;
   flex-direction: column;
@@ -60,6 +65,7 @@ const HomeMessage = () => {
   const [showInput, setShowInput] = useState(false);
   const [name, setName] = useState("");
   const router = useRouter();
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleButtonClick = () => {
     setShowInput(true);
@@ -70,7 +76,10 @@ const HomeMessage = () => {
   };
 
   const handleArrowClick = () => {
-    localStorage.setItem("userName", name); // save name to localStorage
+    if (!name) {
+      return setFormSubmitted(true);
+    }
+    localStorage.setItem("userName", name);
     router.push({
       pathname: "/",
       query: { name },
@@ -92,12 +101,13 @@ const HomeMessage = () => {
             <Input
               type="text"
               value={name}
-              maxLength={15}
               onChange={handleInputChange}
               onKeyDown={handleInputKeyDown}
             />
-            <Counter count={name.length}>{name.length}/15</Counter>{" "}
-            {/* Aquí está el cambio */}
+            {formSubmitted && !name && (
+              <ErrorMessage>Por favor ingresa tu nombre</ErrorMessage>
+            )}
+            <Counter count={name.length}>{name.length}/15</Counter>
           </InputContainer>
           <Button onClick={handleArrowClick}>➡</Button>
         </>
