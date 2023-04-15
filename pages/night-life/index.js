@@ -51,6 +51,7 @@ export default function LatinClubs({ places, type, onBackButtonClick }) {
             place={place}
             isFavorite={favorites.includes(place.place_id)}
             onToggleFavorite={handleToggleFavorite}
+            showNoteButton={false}
           />
         ))}
       </StyledListContainer>

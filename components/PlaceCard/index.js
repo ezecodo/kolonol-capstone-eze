@@ -138,7 +138,7 @@ const BookmarkIconFull = styled.span`
   font-size: 1.2rem;
 `;
 
-function PlaceCard({ place, isFavorite, onToggleFavorite }) {
+function PlaceCard({ place, isFavorite, onToggleFavorite, showNoteButton }) {
   const [bookmarked, setBookmarked] = useState(false);
   const [ratingStars, setRatingStars] = useState(0);
   const [showNoteWindow, setShowNoteWindow] = useState(false);
@@ -215,9 +215,11 @@ function PlaceCard({ place, isFavorite, onToggleFavorite }) {
           </NoteForm>
         </NoteWindow>
       )}
-      <AddNoteButton onClick={handleAddNoteClick} isOpen={showNoteWindow}>
-        {showNoteWindow ? "×" : "+"}
-      </AddNoteButton>
+      {showNoteButton !== false && (
+        <AddNoteButton onClick={handleAddNoteClick} isOpen={showNoteWindow}>
+          {showNoteWindow ? "×" : "+"}
+        </AddNoteButton>
+      )}
     </Card>
   );
 }
