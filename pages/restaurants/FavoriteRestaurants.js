@@ -7,7 +7,6 @@ import {
   getPlaceDetails,
 } from "../../utils/google_places";
 import BackButtonArrow from "../../components/BackButtonHome";
-import favorites from "../favorites";
 
 const Title = styled.h1`
   margin-top: 100px;
@@ -21,7 +20,7 @@ const StyledListContainer = styled.div`
   justify-content: center;
 `;
 
-export default function LatinRestaurants({ places, type }) {
+export default function FavoriteRestaurants({ places, type }) {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
@@ -30,17 +29,25 @@ export default function LatinRestaurants({ places, type }) {
     setFavorites(favorites);
   }, [type]);
 
-  function handleToggleFavorite(place_id, isFavorite) {
-    const newFavorites = isFavorite
-      ? [...favorites, place_id]
-      : favorites.filter((id) => id !== place_id);
+  const handleToggleFavorite = (place_id) => {
+    const placeIndex = favorites.findIndex((fav) => fav.place_id === place_id);
 
-    localStorage.setItem(`${type}-favorites`, JSON.stringify(newFavorites));
-    setFavorites(newFavorites);
-  }
+    if (placeIndex !== -1) {
+      // Si el lugar ya está en los favoritos, lo eliminamos
+      const newFavorites = favorites.filter((fav) => fav.place_id !== place_id);
+      localStorage.setItem(`${type}-favorites`, JSON.stringify(newFavorites));
+      setFavorites(newFavorites);
+    } else {
+      // Si el lugar no está en los favoritos, lo agregamos con una nota en blanco
+      const newFavorite = { place_id, note: "" };
+      const newFavorites = [...favorites, newFavorite];
+      localStorage.setItem(`${type}-favorites`, JSON.stringify(newFavorites));
+      setFavorites(newFavorites);
+    }
+  };
 
   const favoritePlaces = places.filter((place) =>
-    favorites.includes(place.place_id)
+    favorites.some((fav) => fav.place_id === place.place_id)
   );
 
   return (
@@ -51,8 +58,11 @@ export default function LatinRestaurants({ places, type }) {
           <PlaceCard
             key={place.place_id}
             place={place}
-            isFavorite={favorites.includes(place.place_id)}
+            isFavorite={favorites.some(
+              (fav) => fav.place_id === place.place_id
+            )}
             onToggleFavorite={handleToggleFavorite}
+            showNoteButton={false}
           />
         ))}
       </StyledListContainer>
