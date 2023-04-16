@@ -6,11 +6,10 @@ import PacificoTitle from "../Logo";
 import { useHighlight } from "../HighlightProvider";
 
 const StyledHeader = styled.header`
-  display: flex;
   background-color: #15aabf;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 0.8rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -56,7 +55,21 @@ const StyledTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+`;
+
+const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 17px;
+`;
+const StyledSubtitle = styled.div`
+  font-family: monospace;
+  font-size: 15px;
+  margin-left: 10px;
+  margin-top: -18px;
+  color: black;
 `;
 const StyledIcon = styled.span`
   font-size: 2rem;
@@ -122,20 +135,24 @@ const Layout = ({ children }) => {
           <span
             style={{
               color: "black",
-              borderRadius: "5px", // Agrega un borde redondeado
-              padding: "2px 6px", // Agrega un padding para que el borde no toque el texto
-              display: "inline-block", // Agrega display inline-block para que el padding funcione correctamente
+              borderRadius: "5px",
+              padding: "2px 6px",
+              display: "inline-block",
             }}
           >
             {userName}
           </span>
         </Greeting>
         <StyledTitle>
-          <PacificoTitle
-            color="white"
-            fontSize="45px"
-            textShadow="8px 2px 2px #000"
-          />
+          <TitleContainer>
+            <PacificoTitle
+              color="white"
+              fontSize="40px"
+              textShadow="8px 2px 2px #000"
+              marginBottom="10px"
+            />
+            <StyledSubtitle>Köln en español</StyledSubtitle>
+          </TitleContainer>
         </StyledTitle>
       </StyledHeader>
 

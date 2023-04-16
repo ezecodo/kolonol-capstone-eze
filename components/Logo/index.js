@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledPacificoTitle = styled.h1`
   font-family: "Pacifico", cursive;
-  margin-bottom: 5px;
+  margin-bottom: ${(props) => props.marginBottom || "5px"};
   background-size: auto;
   color: ${(props) => props.color || "black"};
   font-size: ${(props) => props.fontSize || "75px"};
