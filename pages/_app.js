@@ -5,11 +5,13 @@ import HomeMessage from "../components/HomeMessage";
 import Layout from "../components/Layout";
 import GlobalStyle from "../styles/globalStyles";
 import { HighlightProvider } from "../components/HighlightProvider";
+import Loading from "../components/Loading";
 
 class MyApp extends App {
   state = {
     showHomeMessage: true,
     userName: "",
+    isLoading: false,
   };
 
   handleUserNameChange = (userName) => {
@@ -19,6 +21,17 @@ class MyApp extends App {
   componentDidMount() {
     Router.events.on("routeChangeComplete", () => {
       this.setState({ showHomeMessage: false });
+    });
+    Router.events.on("routeChangeStart", () => {
+      this.setState({ isLoading: true });
+    });
+
+    Router.events.on("routeChangeComplete", () => {
+      this.setState({ isLoading: false });
+    });
+
+    Router.events.on("routeChangeError", () => {
+      this.setState({ isLoading: false });
     });
   }
 
