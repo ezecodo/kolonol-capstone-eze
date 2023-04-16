@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useHighlight } from "../HighlightProvider";
+import { MdLanguage } from "react-icons/md";
 
 const Card = styled.div`
   position: relative;
@@ -113,6 +114,12 @@ const Website = styled.a`
   white-space: nowrap;
 `;
 
+const StyledWebsite = styled(Website)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+`;
 const Phone = styled.p`
   margin: 10px 0 0 0;
 `;
@@ -164,6 +171,7 @@ function PlaceCard({
   onUpdateNote,
   showRating = true,
   onWebsiteClick,
+  showWebsite = false,
 }) {
   const [bookmarked, setBookmarked] = useState(false);
   const [ratingStars, setRatingStars] = useState(0);
@@ -171,6 +179,7 @@ function PlaceCard({
   const [note, setNote] = useState("");
   const website = truncateUrl(place.website);
   const showFlag = place.bandera !== undefined && place.bandera !== null;
+  const { setHighlightStar } = useHighlight();
 
   useEffect(() => {
     if (favorites) {
@@ -181,8 +190,6 @@ function PlaceCard({
       setNote(currentNote);
     }
   }, [favorites, place.place_id]);
-
-  const { setHighlightStar } = useHighlight();
 
   const bookmarkButtonRef = useRef(null);
 
@@ -220,7 +227,6 @@ function PlaceCard({
   function handleBookmarkClick() {
     setBookmarked(!bookmarked);
     onToggleFavorite(place.place_id, !bookmarked);
-
     setHighlightStar(true);
     setTimeout(() => {
       setHighlightStar(false);
@@ -246,14 +252,16 @@ function PlaceCard({
         <Description>{description}</Description>
         <Address>{address}</Address>
         <Phone>{phone}</Phone>
-        <Website
+        <StyledWebsite
+          style={{ display: showWebsite ? "flex" : "none" }}
+          className="website-icon"
           href={website}
           target="_self"
           onClick={handleWebsiteClick}
           rel="noopener noreferrer"
         >
-          {website}
-        </Website>
+          <MdLanguage size={24} />
+        </StyledWebsite>
         {showRating && (
           <RatingContainer visible={showRating}>
             <RatingLabel>Rating:</RatingLabel>

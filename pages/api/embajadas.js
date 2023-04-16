@@ -4,7 +4,7 @@ const embajadas = [
     pais: "Argentina",
     direccion: "Königsallee 23, 40212 Düsseldorf, Alemania",
     telefono: "+49 211 863 228 0",
-    pagina_web: "http://www.embajadaargentina.de/",
+    pagina_web: "https://ealem.cancilleria.gob.ar/",
     bandera: "https://flagcdn.com/64x48/ar.png",
   },
   {
@@ -12,7 +12,7 @@ const embajadas = [
     pais: "Bolivia",
     direccion: "Kurfürstendamm 72, 10709 Berlín, Alemania",
     telefono: "+49 30 8892 190",
-    pagina_web: "https://www.embajadadebolivia.de/",
+    pagina_web: "http://www.bolivia.de/",
     bandera: "https://flagcdn.com/64x48/bo.png",
   },
   {
@@ -44,7 +44,7 @@ const embajadas = [
     pais: "Costa Rica",
     direccion: "Rheinstraße 41, 12161 Berlín, Alemania",
     telefono: "+49 30 7978 6842",
-    pagina_web: "https://www.costarica-embassy.de/",
+    pagina_web: "https://www.botschaft-costarica.de/",
     bandera: "https://flagcdn.com/64x48/cr.png",
   },
   {
@@ -52,7 +52,7 @@ const embajadas = [
     pais: "Cuba",
     direccion: "Stavangerstr. 20, 10439 Berlín, Alemania",
     telefono: "+49 30 4465 690",
-    pagina_web: "http://misiones.minrex.gob.cu/deutschland",
+    pagina_web: "http://misiones.minrex.gob.cu/",
     bandera: "https://flagcdn.com/64x48/cu.png",
   },
   {
@@ -60,7 +60,7 @@ const embajadas = [
     pais: "República Dominicana",
     direccion: "Schillstr. 20, 10785 Berlín, Alemania",
     telefono: "+49 30 229 1400",
-    pagina_web: "http://www.embajadadominicana.de/",
+    pagina_web: "https://deu.mirex.gob.do/",
     bandera: "https://flagcdn.com/64x48/do.png",
   },
   {
@@ -68,7 +68,7 @@ const embajadas = [
     pais: "Ecuador",
     direccion: "Schillerstr. 5, 10625 Berlín, Alemania",
     telefono: "+49 30 3110 806",
-    pagina_web: "https://www.embajadaecuador.de/",
+    pagina_web: "https://quito.diplo.de/ec-es",
     bandera: "https://flagcdn.com/96x72/ec.png",
   },
   {
@@ -76,7 +76,7 @@ const embajadas = [
     pais: "El Salvador",
     direccion: "Lützowufer 26, 10787 Berlín, Alemania",
     telefono: "",
-    pagina_web: "",
+    pagina_web: "consuladoalemania@rree.gob.sv",
     bandera: "https://flagcdn.com/96x72/sv.png",
   },
   {
@@ -84,7 +84,7 @@ const embajadas = [
     pais: "Guatemala",
     direccion: "Clayallee 342, 14169 Berlín, Alemania",
     telefono: "+49 30 84 19 78 0",
-    pagina_web: "https://embajadadeguatemala.de/",
+    pagina_web: "https://botschaft-guatemala.de/",
     bandera: "https://flagcdn.com/96x72/gt.png",
   },
   {
@@ -92,7 +92,7 @@ const embajadas = [
     pais: "Honduras",
     direccion: "Nürnberger Str. 32, 10777 Berlín, Alemania",
     telefono: "+49 30 2362 1480",
-    pagina_web: "http://embajadahondurasalemania.com/",
+    pagina_web: "https://hondurasenalemania.com/new/",
     bandera: "https://flagcdn.com/96x72/hn.png",
   },
   {
@@ -108,7 +108,7 @@ const embajadas = [
     pais: "Nicaragua",
     direccion: "Invalidenstr. 110, 10115 Berlín, Alemania",
     telefono: "+49 30 206 2250",
-    pagina_web: "https://www.embajadadenicaragua.de/",
+    pagina_web: "https://www.nicaraguaportal.de/",
     bandera: "https://flagcdn.com/96x72/ni.png",
   },
   {
@@ -116,7 +116,7 @@ const embajadas = [
     pais: "Panamá",
     direccion: "Meinekestr. 6, 10719 Berlín, Alemania",
     telefono: "+49 30 3199 5901",
-    pagina_web: "http://www.embajadadepanama.de/",
+    pagina_web: "https://botschaft-panama.de/",
     bandera: "https://flagcdn.com/96x72/pa.png",
   },
   {
@@ -124,7 +124,7 @@ const embajadas = [
     pais: "Paraguay",
     direccion: "Friedrichstr. 200, 10117 Berlín, Alemania",
     telefono: "+49 30 555 162 0",
-    pagina_web: "http://www.paraguay-botschaft.de/",
+    pagina_web: "https://embapar.de/",
     bandera: "https://flagcdn.com/96x72/pa.png",
   },
   {
@@ -132,7 +132,7 @@ const embajadas = [
     pais: "Perú",
     direccion: "Mohrenstr. 42, 10117 Berlín, Alemania",
     telefono: "+49 30 206 2970",
-    pagina_web: "https://www.embajadaperu.de/",
+    pagina_web: "http://www.consulado.pe/es/Berlin/Paginas/Inicio.aspx",
     bandera: "https://flagcdn.com/96x72/pe.png",
   },
   {
@@ -140,17 +140,10 @@ const embajadas = [
     pais: "Puerto Rico",
     direccion: "Schaperstr. 29, 10719 Berlín, Alemania",
     telefono: "+49 30 236 25 50",
-    pagina_web: "https://www.puertorico.de/",
+    pagina_web: "https://consularcorpspr.org/ccprmiembros/alemania",
     bandera: "https://flagcdn.com/96x72/pr.png",
   },
-  {
-    id: "DOM",
-    pais: "República Dominicana",
-    direccion: "Schillstr. 20, 10785 Berlín, Alemania",
-    telefono: "+49 30 229 1400",
-    pagina_web: "http://www.embajadadominicana.de/",
-    bandera: "https://flagcdn.com/96x72/do.png",
-  },
+
   {
     id: "URY",
     pais: "Uruguay",

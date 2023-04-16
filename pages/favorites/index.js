@@ -47,6 +47,7 @@ const Container = styled.div`
 function FavCategories() {
   const [hasLatinRestaurants, setHasLatinRestaurants] = useState(false);
   const [hasLatinClubs, setHasLatinClubs] = useState(false);
+  const [hasLatinEmbassies, setHasLatinEmbassies] = useState(false);
 
   useEffect(() => {
     const latinRestaurantFavorites =
@@ -59,6 +60,11 @@ function FavCategories() {
       JSON.parse(localStorage.getItem("Latin Club-favorites")) || [];
     if (latinClubFavorites.length > 0) {
       setHasLatinClubs(true);
+    }
+    const latinEmbassiesFavorites =
+      JSON.parse(localStorage.getItem("Latin Embassies-favorites")) || [];
+    if (latinEmbassiesFavorites.length > 0) {
+      setHasLatinEmbassies(true);
     }
   }, []);
 
@@ -79,11 +85,13 @@ function FavCategories() {
             </StyledLink>
           </Link>
         )}
-        <Link href="/latin-music">
-          <StyledLink>
-            <Button>Tandem</Button>
-          </StyledLink>
-        </Link>
+        {hasLatinEmbassies && (
+          <Link href="/embajadas/FavoriteEmbajadas">
+            <StyledLink>
+              <Button>Embajadas</Button>
+            </StyledLink>
+          </Link>
+        )}
         <Link href="/">
           <StyledLink>
             <Button>Random Text 1</Button>

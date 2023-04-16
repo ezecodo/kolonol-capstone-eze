@@ -4,12 +4,46 @@ import BackButtonArrow from "../../components/BackButtonHome";
 
 function Embajadas() {
   const [embajadas, setEmbajadas] = useState([]);
+  const [favorites, setFavorites] = useState(() => {
+    const localData = localStorage.getItem("Latin Embassies-favorites");
+    return localData ? JSON.parse(localData) : [];
+  });
 
   useEffect(() => {
     fetch("../api/embajadas")
       .then((response) => response.json())
       .then((data) => setEmbajadas(data));
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "Latin Embassies-favorites",
+      JSON.stringify(favorites)
+    );
+  }, [favorites]);
+
+  const handleToggleFavorite = (place_id) => {
+    const placeIndex = favorites.findIndex((fav) => fav.id === place_id);
+
+    if (placeIndex !== -1) {
+      // Si el lugar ya está en los favoritos, lo eliminamos
+      const newFavorites = favorites.filter((fav) => fav.id !== place_id);
+      localStorage.setItem(
+        "Latin Embassies-favorites",
+        JSON.stringify(newFavorites)
+      );
+      setFavorites(newFavorites);
+    } else {
+      // Si el lugar no está en los favoritos, lo agregamos con una nota en blanco
+      const newFavorite = { id: place_id, note: "" };
+      const newFavorites = [...favorites, newFavorite];
+      localStorage.setItem(
+        "Latin Embassies-favorites",
+        JSON.stringify(newFavorites)
+      );
+      setFavorites(newFavorites);
+    }
+  };
 
   const containerStyle = {
     display: "flex",
@@ -23,6 +57,7 @@ function Embajadas() {
     flexDirection: "column",
     alignItems: "center",
     gap: "1rem",
+    marginBottom: "6rem",
   };
 
   return (
@@ -43,9 +78,12 @@ function Embajadas() {
               website: embajada.pagina_web,
               bandera: embajada.bandera,
             }}
+            isFavorite={favorites.some((fav) => fav.id === embajada.id)}
+            onToggleFavorite={() => handleToggleFavorite(embajada.id)}
             showNoteButton={false}
             showRating={false}
-            onWebsiteClick={(url) => (window.location.href = url)}
+            onWebsiteClick={(url) => window.open(url, "_blank")}
+            showWebsite={true}
           />
         ))}
       </div>

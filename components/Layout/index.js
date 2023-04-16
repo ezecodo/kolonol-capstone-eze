@@ -50,7 +50,7 @@ const StyledTitle = styled.div`
 `;
 
 const StyledIcon = styled.span`
-  font-size: 50px;
+  font-size: 2rem;
   margin-right: 1rem;
 `;
 
@@ -59,15 +59,12 @@ const StyledIconFavorites = styled.div`
   text-align: center;
   transition: transform 0.2s ease-in-out;
   cursor: pointer;
-
   &:hover {
     transform: scale(1.2);
   }
-
   &.favorite-btn-flash {
     animation: favorite-btn-flash 1s;
   }
-
   @keyframes favorite-btn-flash {
     0% {
       transform: scale(1);
