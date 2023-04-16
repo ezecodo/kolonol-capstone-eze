@@ -41,9 +41,11 @@ function Embajadas() {
               formatted_phone_number: embajada.telefono,
               rating: 0,
               website: embajada.pagina_web,
+              bandera: embajada.bandera,
             }}
             showNoteButton={false}
             showRating={false}
+            onWebsiteClick={(url) => (window.location.href = url)}
           />
         ))}
       </div>

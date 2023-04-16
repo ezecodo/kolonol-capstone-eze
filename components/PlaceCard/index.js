@@ -99,6 +99,10 @@ const Address = styled.p`
 const Name = styled.h2`
   margin: 0;
 `;
+const FlagImage = styled.img`
+  height: 20px;
+  margin-right: 10px;
+`;
 
 const Website = styled.a`
   color: #0066cc;
@@ -159,12 +163,14 @@ function PlaceCard({
   favorites,
   onUpdateNote,
   showRating = true,
+  onWebsiteClick,
 }) {
   const [bookmarked, setBookmarked] = useState(false);
   const [ratingStars, setRatingStars] = useState(0);
   const [showNoteWindow, setShowNoteWindow] = useState(false);
   const [note, setNote] = useState("");
   const website = truncateUrl(place.website);
+  const showFlag = place.bandera !== undefined && place.bandera !== null;
 
   useEffect(() => {
     if (favorites) {
@@ -175,6 +181,7 @@ function PlaceCard({
       setNote(currentNote);
     }
   }, [favorites, place.place_id]);
+
   const { setHighlightStar } = useHighlight();
 
   const bookmarkButtonRef = useRef(null);
@@ -199,6 +206,12 @@ function PlaceCard({
     console.log("Nota enviada:", note);
     setShowNoteWindow(false);
   };
+
+  function handleWebsiteClick(e) {
+    e.preventDefault();
+    onWebsiteClick(place.website);
+  }
+
   const name = place.name;
   const description = place.description || place.types.join(", ");
   const address = place.formatted_address;
@@ -224,11 +237,21 @@ function PlaceCard({
         )}
       </BookmarkButton>
       <Details>
-        <Name>{name}</Name>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          {showFlag && (
+            <FlagImage src={place.bandera} alt={`${place.name} flag`} />
+          )}
+          <Name>{place.name}</Name>
+        </div>
         <Description>{description}</Description>
         <Address>{address}</Address>
         <Phone>{phone}</Phone>
-        <Website href={website} target="_blank" rel="noopener noreferrer">
+        <Website
+          href={website}
+          target="_self"
+          onClick={handleWebsiteClick}
+          rel="noopener noreferrer"
+        >
           {website}
         </Website>
         {showRating && (
