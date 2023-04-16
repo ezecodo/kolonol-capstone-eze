@@ -32,7 +32,7 @@ export default function LatinClubs({ places, type }) {
 
   useEffect(() => {
     updateFavorites();
-  });
+  }, []);
 
   const handleToggleFavorite = (place_id) => {
     const placeIndex = favorites.findIndex((fav) => fav.place_id === place_id);

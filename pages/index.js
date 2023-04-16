@@ -63,9 +63,9 @@ function Home() {
             <Button>Tandem</Button>
           </StyledLink>
         </Link>
-        <Link href="/">
+        <Link href="./embajadas/embajadas">
           <StyledLink>
-            <Button>Random Text 1</Button>
+            <Button>Embajadas</Button>
           </StyledLink>
         </Link>
         <Link href="/">

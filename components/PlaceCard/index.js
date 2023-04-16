@@ -100,12 +100,21 @@ const Name = styled.h2`
   margin: 0;
 `;
 
+const Website = styled.a`
+  color: #0066cc;
+  text-decoration: none;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
 const Phone = styled.p`
   margin: 10px 0 0 0;
 `;
 
 const RatingContainer = styled.div`
-  display: flex;
+  display: ${({ visible }) => (visible ? "flex" : "none")};
   align-items: center;
   margin-top: 10px;
 `;
@@ -138,6 +147,10 @@ const BookmarkIconFull = styled.span`
   font-size: 1.2rem;
 `;
 
+function truncateUrl(url) {
+  const protocolPattern = /^https?:\/\//i;
+  return url ? url.replace(protocolPattern, "") : "";
+}
 function PlaceCard({
   place,
   isFavorite,
@@ -146,11 +159,14 @@ function PlaceCard({
   favorites,
   type,
   onUpdateNote,
+  showRating = true,
 }) {
   const [bookmarked, setBookmarked] = useState(false);
   const [ratingStars, setRatingStars] = useState(0);
   const [showNoteWindow, setShowNoteWindow] = useState(false);
   const [note, setNote] = useState("");
+  const website = truncateUrl(place.website);
+
   useEffect(() => {
     if (favorites) {
       const currentFavorite = favorites.find(
@@ -213,12 +229,17 @@ function PlaceCard({
         <Description>{description}</Description>
         <Address>{address}</Address>
         <Phone>{phone}</Phone>
-        <RatingContainer>
-          <RatingLabel>Rating:</RatingLabel>
-          {[...Array(ratingStars)].map((star, index) => (
-            <RatingStars key={index}>&#9733;</RatingStars>
-          ))}
-        </RatingContainer>
+        <Website href={website} target="_blank" rel="noopener noreferrer">
+          {website}
+        </Website>
+        {showRating && (
+          <RatingContainer visible={showRating}>
+            <RatingLabel>Rating:</RatingLabel>
+            {[...Array(ratingStars)].map((star, index) => (
+              <RatingStars key={index}>&#9733;</RatingStars>
+            ))}
+          </RatingContainer>
+        )}
       </Details>
       {showNoteWindow && (
         <NoteWindow>

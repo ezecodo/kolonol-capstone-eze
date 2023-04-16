@@ -63,6 +63,7 @@ export default function LatinRestaurants({ places, type }) {
             )}
             onToggleFavorite={handleToggleFavorite}
             showNoteButton={false}
+            showRating={true}
           />
         ))}
       </StyledListContainer>
