@@ -24,7 +24,8 @@ const Greeting = styled.div`
   color: #fff;
   font-size: 1rem;
   font-weight: bold;
-  margin-left: 1rem;
+  padding-left: 0;
+  margin-left: 0;
 `;
 const StyledFooter = styled.footer`
   display: flex;
@@ -47,8 +48,16 @@ const StyledFooter = styled.footer`
 const StyledTitle = styled.div`
   font-size: 2rem;
   font-weight: bold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
 `;
-
 const StyledIcon = styled.span`
   font-size: 2rem;
   margin-right: 1rem;
@@ -108,7 +117,19 @@ const Layout = ({ children }) => {
   return (
     <>
       <StyledHeader>
-        <Greeting>{`Hola, ${userName}`}</Greeting>
+        <Greeting>
+          Hola <br />{" "}
+          <span
+            style={{
+              color: "black",
+              borderRadius: "5px", // Agrega un borde redondeado
+              padding: "2px 6px", // Agrega un padding para que el borde no toque el texto
+              display: "inline-block", // Agrega display inline-block para que el padding funcione correctamente
+            }}
+          >
+            {userName}
+          </span>
+        </Greeting>
         <StyledTitle>
           <PacificoTitle
             color="white"
