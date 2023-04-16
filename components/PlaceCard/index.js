@@ -157,7 +157,6 @@ function PlaceCard({
   onToggleFavorite,
   showNoteButton,
   favorites,
-  type,
   onUpdateNote,
   showRating = true,
 }) {
