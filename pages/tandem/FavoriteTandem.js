@@ -33,10 +33,10 @@ function FavoriteTandems() {
   }, []);
 
   const handleToggleFavorite = (place_id) => {
-    const placeIndex = favorites.findIndex((fav) => fav.id === place_id);
+    const placeIndex = favorites.findIndex((fav) => fav.place_id === place_id);
 
     if (placeIndex !== -1) {
-      const newFavorites = favorites.filter((fav) => fav.id !== place_id);
+      const newFavorites = favorites.filter((fav) => fav.place_id !== place_id);
       localStorage.setItem(
         "Sprach Tandem-favorites",
         JSON.stringify(newFavorites)
@@ -47,7 +47,7 @@ function FavoriteTandems() {
 
   const handleUpdateNote = (place_id, note) => {
     const favoritePlaceIndex = favorites.findIndex(
-      (fav) => fav.id === place_id
+      (fav) => fav.place_id === place_id
     );
 
     if (favoritePlaceIndex !== -1) {
@@ -66,7 +66,7 @@ function FavoriteTandems() {
   };
 
   const FavoriteTandems = tandems.filter((tandem) =>
-    favorites.some((fav) => fav.id === tandem.id)
+    favorites.some((fav) => fav.place_id === tandem.place_id)
   );
 
   return (
@@ -75,9 +75,9 @@ function FavoriteTandems() {
       <StyledListContainer>
         {FavoriteTandems.map((tandem) => (
           <PlaceCard
-            key={tandem.id}
+            key={tandem.place_id}
             place={{
-              place_id: tandem.id,
+              place_id: tandem.place_id,
               name: tandem.nombre,
               description: "Intercambio de Idiomas",
               formatted_address: tandem.direccion,
@@ -85,8 +85,10 @@ function FavoriteTandems() {
               rating: 0,
               website: tandem.pagina_web,
             }}
-            isFavorite={favorites.some((fav) => fav.id === tandem.id)}
-            onToggleFavorite={() => handleToggleFavorite(tandem.id)}
+            isFavorite={favorites.some(
+              (fav) => fav.place_id === tandem.place_id
+            )}
+            onToggleFavorite={() => handleToggleFavorite(tandem.place_id)}
             showNoteButton={true}
             favorites={favorites}
             type={"Sprach Tandem"}

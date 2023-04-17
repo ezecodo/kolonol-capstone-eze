@@ -1,6 +1,6 @@
 const tandems = [
   {
-    id: "t1",
+    place_id: "t1",
     nombre: "Melting Pot",
     direccion: "Richard-Wagner-Str. 39, 50674 Köln",
     telefono: "0171 9836881",
@@ -8,7 +8,7 @@ const tandems = [
     date: "Miercoles, 19.00 H",
   },
   {
-    id: "t2",
+    place_id: "t2",
     nombre: "Motoki",
     direccion: "Richard-Wagner-Str. 39, 50674 Köln",
     telefono: "0171 9836881",
@@ -16,7 +16,7 @@ const tandems = [
     date: "Jueves, 19.30 H",
   },
   {
-    id: "t3",
+    place_id: "t3",
     nombre: "Allerweltshaus e.V",
     direccion: "Geisselstraße 3-5, 50823 Köln",
     telefono: "0221 57779930",
@@ -24,7 +24,7 @@ const tandems = [
     date: "Jueves, 19.30 H",
   },
   {
-    id: "t4",
+    place_id: "t4",
     nombre: "TANDEM Uni TH Köln",
     direccion: "Geisselstraße 3-5, 50823 Köln",
     telefono: "0221 57779930",

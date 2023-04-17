@@ -23,17 +23,17 @@ function Embajadas() {
   }, [favorites]);
 
   const handleToggleFavorite = (place_id) => {
-    const placeIndex = favorites.findIndex((fav) => fav.id === place_id);
+    const placeIndex = favorites.findIndex((fav) => fav.place_id === place_id);
 
     if (placeIndex !== -1) {
-      const newFavorites = favorites.filter((fav) => fav.id !== place_id);
+      const newFavorites = favorites.filter((fav) => fav.place_id !== place_id);
       localStorage.setItem(
         "Latin Embassies-favorites",
         JSON.stringify(newFavorites)
       );
       setFavorites(newFavorites);
     } else {
-      const newFavorite = { id: place_id, note: "" };
+      const newFavorite = { place_id, note: "" };
       const newFavorites = [...favorites, newFavorite];
       localStorage.setItem(
         "Latin Embassies-favorites",
@@ -64,9 +64,9 @@ function Embajadas() {
         <BackButtonArrow to={"/"} />
         {embajadas.map((embajada) => (
           <PlaceCard
-            key={embajada.id}
+            key={embajada.place_id}
             place={{
-              place_id: embajada.id,
+              place_id: embajada.place_id,
               name: embajada.pais,
               bandera: embajada.bandera,
               description: "Embajada",
@@ -76,8 +76,10 @@ function Embajadas() {
               website: embajada.pagina_web,
               bandera: embajada.bandera,
             }}
-            isFavorite={favorites.some((fav) => fav.id === embajada.id)}
-            onToggleFavorite={() => handleToggleFavorite(embajada.id)}
+            isFavorite={favorites.some(
+              (fav) => fav.place_id === embajada.place_id
+            )}
+            onToggleFavorite={() => handleToggleFavorite(embajada.place_id)}
             showNoteButton={false}
             showRating={false}
             onWebsiteClick={(url) => window.open(url, "_blank")}

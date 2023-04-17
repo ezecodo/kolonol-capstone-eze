@@ -48,6 +48,7 @@ function FavCategories() {
   const [hasLatinRestaurants, setHasLatinRestaurants] = useState(false);
   const [hasLatinClubs, setHasLatinClubs] = useState(false);
   const [hasLatinEmbassies, setHasLatinEmbassies] = useState(false);
+  const [hasLatinTandems, setHasLatinTandemss] = useState(false);
 
   useEffect(() => {
     const latinRestaurantFavorites =
@@ -65,6 +66,11 @@ function FavCategories() {
       JSON.parse(localStorage.getItem("Latin Embassies-favorites")) || [];
     if (latinEmbassiesFavorites.length > 0) {
       setHasLatinEmbassies(true);
+    }
+    const latinTandemsFavorites =
+      JSON.parse(localStorage.getItem("Sprach Tandem-favorites")) || [];
+    if (latinTandemsFavorites.length > 0) {
+      setHasLatinTandemss(true);
     }
   }, []);
 
@@ -92,12 +98,13 @@ function FavCategories() {
             </StyledLink>
           </Link>
         )}
-
-        <Link href="/tandem/FavoriteTandem">
-          <StyledLink>
-            <Button>Intercambio de Idiomas</Button>
-          </StyledLink>
-        </Link>
+        {hasLatinTandems && (
+          <Link href="/tandem/FavoriteTandem">
+            <StyledLink>
+              <Button>Intercambio de Idiomas</Button>
+            </StyledLink>
+          </Link>
+        )}
         <Link href="/">
           <StyledLink>
             <Button>Random Text 2</Button>

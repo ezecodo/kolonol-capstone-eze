@@ -1,6 +1,6 @@
 const embajadas = [
   {
-    id: "ARG",
+    place_id: "ARG",
     pais: "Argentina",
     direccion: "Königsallee 23, 40212 Düsseldorf, Alemania",
     telefono: "+49 211 863 228 0",
@@ -8,7 +8,7 @@ const embajadas = [
     bandera: "https://flagcdn.com/64x48/ar.png",
   },
   {
-    id: "BOL",
+    place_id: "BOL",
     pais: "Bolivia",
     direccion: "Kurfürstendamm 72, 10709 Berlín, Alemania",
     telefono: "+49 30 8892 190",
@@ -16,7 +16,7 @@ const embajadas = [
     bandera: "https://flagcdn.com/64x48/bo.png",
   },
   {
-    id: "BRA",
+    place_id: "BRA",
     pais: "Brasil",
     direccion: "Unter den Linden 10, 10117 Berlín, Alemania",
     telefono: "+49 30 72628 0",
@@ -24,7 +24,7 @@ const embajadas = [
     bandera: "https://flagcdn.com/64x48/br.png",
   },
   {
-    id: "CHI",
+    place_id: "CHI",
     pais: "Chile",
     direccion: "Am Kleinen Tiergarten 14, 10587 Berlín, Alemania",
     telefono: "+49 30 206 295 0",
@@ -32,7 +32,7 @@ const embajadas = [
     bandera: "https://flagcdn.com/64x48/cl.png",
   },
   {
-    id: "COL",
+    place_id: "COL",
     pais: "Colombia",
     direccion: "Crellestraße 14, 10827 Berlín, Alemania",
     telefono: "+49 30 2404 7930",
@@ -40,7 +40,7 @@ const embajadas = [
     bandera: "https://flagcdn.com/64x48/co.png",
   },
   {
-    id: "CRI",
+    place_id: "CRI",
     pais: "Costa Rica",
     direccion: "Rheinstraße 41, 12161 Berlín, Alemania",
     telefono: "+49 30 7978 6842",
@@ -48,7 +48,7 @@ const embajadas = [
     bandera: "https://flagcdn.com/64x48/cr.png",
   },
   {
-    id: "CUB",
+    place_id: "CUB",
     pais: "Cuba",
     direccion: "Stavangerstr. 20, 10439 Berlín, Alemania",
     telefono: "+49 30 4465 690",
@@ -56,7 +56,7 @@ const embajadas = [
     bandera: "https://flagcdn.com/64x48/cu.png",
   },
   {
-    id: "DOM",
+    place_id: "DOM",
     pais: "República Dominicana",
     direccion: "Schillstr. 20, 10785 Berlín, Alemania",
     telefono: "+49 30 229 1400",
@@ -64,7 +64,7 @@ const embajadas = [
     bandera: "https://flagcdn.com/64x48/do.png",
   },
   {
-    id: "ECU",
+    place_id: "ECU",
     pais: "Ecuador",
     direccion: "Schillerstr. 5, 10625 Berlín, Alemania",
     telefono: "+49 30 3110 806",
@@ -72,7 +72,7 @@ const embajadas = [
     bandera: "https://flagcdn.com/96x72/ec.png",
   },
   {
-    id: "SLV",
+    place_id: "SLV",
     pais: "El Salvador",
     direccion: "Lützowufer 26, 10787 Berlín, Alemania",
     telefono: "",
@@ -80,7 +80,7 @@ const embajadas = [
     bandera: "https://flagcdn.com/96x72/sv.png",
   },
   {
-    id: "GTM",
+    place_id: "GTM",
     pais: "Guatemala",
     direccion: "Clayallee 342, 14169 Berlín, Alemania",
     telefono: "+49 30 84 19 78 0",
@@ -88,7 +88,7 @@ const embajadas = [
     bandera: "https://flagcdn.com/96x72/gt.png",
   },
   {
-    id: "HND",
+    place_id: "HND",
     pais: "Honduras",
     direccion: "Nürnberger Str. 32, 10777 Berlín, Alemania",
     telefono: "+49 30 2362 1480",
@@ -96,7 +96,7 @@ const embajadas = [
     bandera: "https://flagcdn.com/96x72/hn.png",
   },
   {
-    id: "MEX",
+    place_id: "MEX",
     pais: "México",
     direccion: "Klingelhöferstr. 3, 10785 Berlín, Alemania",
     telefono: "+49 30 269 323 0",
@@ -104,7 +104,7 @@ const embajadas = [
     bandera: "https://flagcdn.com/96x72/mx.png",
   },
   {
-    id: "NIC",
+    place_id: "NIC",
     pais: "Nicaragua",
     direccion: "Invalidenstr. 110, 10115 Berlín, Alemania",
     telefono: "+49 30 206 2250",
@@ -112,7 +112,7 @@ const embajadas = [
     bandera: "https://flagcdn.com/96x72/ni.png",
   },
   {
-    id: "PAN",
+    place_id: "PAN",
     pais: "Panamá",
     direccion: "Meinekestr. 6, 10719 Berlín, Alemania",
     telefono: "+49 30 3199 5901",
@@ -120,7 +120,7 @@ const embajadas = [
     bandera: "https://flagcdn.com/96x72/pa.png",
   },
   {
-    id: "PRY",
+    place_id: "PRY",
     pais: "Paraguay",
     direccion: "Friedrichstr. 200, 10117 Berlín, Alemania",
     telefono: "+49 30 555 162 0",
@@ -128,7 +128,7 @@ const embajadas = [
     bandera: "https://flagcdn.com/96x72/pa.png",
   },
   {
-    id: "PER",
+    place_id: "PER",
     pais: "Perú",
     direccion: "Mohrenstr. 42, 10117 Berlín, Alemania",
     telefono: "+49 30 206 2970",
@@ -136,7 +136,7 @@ const embajadas = [
     bandera: "https://flagcdn.com/96x72/pe.png",
   },
   {
-    id: "PRI",
+    place_id: "PRI",
     pais: "Puerto Rico",
     direccion: "Schaperstr. 29, 10719 Berlín, Alemania",
     telefono: "+49 30 236 25 50",
@@ -145,7 +145,7 @@ const embajadas = [
   },
 
   {
-    id: "URY",
+    place_id: "URY",
     pais: "Uruguay",
     direccion: "Lützowufer 26, 10787 Berlín, Alemania",
     telefono: "+49 30 23 62 36 64",

@@ -33,10 +33,10 @@ function FavoriteEmbajadas() {
   }, []);
 
   const handleToggleFavorite = (place_id) => {
-    const placeIndex = favorites.findIndex((fav) => fav.id === place_id);
+    const placeIndex = favorites.findIndex((fav) => fav.place_id === place_id);
 
     if (placeIndex !== -1) {
-      const newFavorites = favorites.filter((fav) => fav.id !== place_id);
+      const newFavorites = favorites.filter((fav) => fav.place_id !== place_id);
       localStorage.setItem(
         "Latin Embassies-favorites",
         JSON.stringify(newFavorites)
@@ -47,7 +47,7 @@ function FavoriteEmbajadas() {
 
   const handleUpdateNote = (place_id, note) => {
     const favoritePlaceIndex = favorites.findIndex(
-      (fav) => fav.id === place_id
+      (fav) => fav.place_id === place_id
     );
 
     if (favoritePlaceIndex !== -1) {
@@ -66,7 +66,7 @@ function FavoriteEmbajadas() {
   };
 
   const favoriteEmbajadas = embajadas.filter((embajada) =>
-    favorites.some((fav) => fav.id === embajada.id)
+    favorites.some((fav) => fav.place_id === embajada.place_id)
   );
 
   return (
@@ -75,9 +75,9 @@ function FavoriteEmbajadas() {
       <StyledListContainer>
         {favoriteEmbajadas.map((embajada) => (
           <PlaceCard
-            key={embajada.id}
+            key={embajada.place_id}
             place={{
-              place_id: embajada.id,
+              place_id: embajada.place_id,
               name: embajada.pais,
               bandera: embajada.bandera,
               description: "Embajada",
@@ -87,12 +87,14 @@ function FavoriteEmbajadas() {
               website: embajada.pagina_web,
               bandera: embajada.bandera,
             }}
-            isFavorite={favorites.some((fav) => fav.id === embajada.id)}
-            onToggleFavorite={() => handleToggleFavorite(embajada.id)}
-            showNoteButton={true} // Habilita el botón para agregar nota
+            isFavorite={favorites.some(
+              (fav) => fav.place_id === embajada.place_id
+            )}
+            onToggleFavorite={() => handleToggleFavorite(embajada.place_id)}
+            showNoteButton={true}
             favorites={favorites}
-            type={"Latin Embassies"} // Añade el tipo como "Latin Embassies"
-            onUpdateNote={handleUpdateNote} // Añade el manejador para actualizar notas
+            type={"Latin Embassies"}
+            onUpdateNote={handleUpdateNote} //
             showRating={false}
             onWebsiteClick={(url) => window.open(url, "_blank")}
             showWebsite={true}

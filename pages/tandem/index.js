@@ -20,20 +20,20 @@ function Tandems() {
   }, [favorites]);
 
   const handleToggleFavorite = (place_id) => {
-    const placeIndex = favorites.findIndex((fav) => fav.id === place_id);
+    const placeIndex = favorites.findIndex((fav) => fav.place_id === place_id);
 
     if (placeIndex !== -1) {
-      const newFavorites = favorites.filter((fav) => fav.id !== place_id);
+      const newFavorites = favorites.filter((fav) => fav.place_id !== place_id);
       localStorage.setItem(
         "Sprach Tandem-favorites",
         JSON.stringify(newFavorites)
       );
       setFavorites(newFavorites);
     } else {
-      const newFavorite = { id: place_id, note: "" };
+      const newFavorite = { place_id, note: "" };
       const newFavorites = [...favorites, newFavorite];
       localStorage.setItem(
-        "Latin Embassies-favorites",
+        "Sprach Tandem-favorites",
         JSON.stringify(newFavorites)
       );
       setFavorites(newFavorites);
@@ -61,18 +61,20 @@ function Tandems() {
         <BackButtonArrow to={"/"} />
         {tandems.map((tandem) => (
           <PlaceCard
-            key={tandem.id}
+            key={tandem.place_id}
             place={{
-              place_id: tandem.id,
+              place_id: tandem.place_id,
               name: tandem.nombre,
 
-              description: "Intercambio de Idioma",
+              description: "Tandem",
               formatted_address: tandem.direccion,
               formatted_phone_number: tandem.telefono,
               website: tandem.pagina_web,
             }}
-            isFavorite={favorites.some((fav) => fav.id === tandem.id)}
-            onToggleFavorite={() => handleToggleFavorite(tandem.id)}
+            isFavorite={favorites.some(
+              (fav) => fav.place_id === tandem.place_id
+            )}
+            onToggleFavorite={() => handleToggleFavorite(tandem.place_id)}
             showNoteButton={false}
             showRating={false}
             onWebsiteClick={(url) => window.open(url, "_blank")}
