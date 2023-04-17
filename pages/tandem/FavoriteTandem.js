@@ -16,19 +16,19 @@ const StyledListContainer = styled.div`
   justify-content: center;
 `;
 
-function FavoriteEmbajadas() {
-  const [embajadas, setEmbajadas] = useState([]);
+function FavoriteTandems() {
+  const [tandems, setTandems] = useState([]);
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    fetch("../api/embajadas")
+    fetch("../api/tandem")
       .then((response) => response.json())
-      .then((data) => setEmbajadas(data));
+      .then((data) => setTandems(data));
   }, []);
 
   useEffect(() => {
     const favorites =
-      JSON.parse(localStorage.getItem("Latin Embassies-favorites")) || [];
+      JSON.parse(localStorage.getItem("Sprach Tandem-favorites")) || [];
     setFavorites(favorites);
   }, []);
 
@@ -38,7 +38,7 @@ function FavoriteEmbajadas() {
     if (placeIndex !== -1) {
       const newFavorites = favorites.filter((fav) => fav.id !== place_id);
       localStorage.setItem(
-        "Latin Embassies-favorites",
+        "Sprach Tandem-favorites",
         JSON.stringify(newFavorites)
       );
       setFavorites(newFavorites);
@@ -58,41 +58,39 @@ function FavoriteEmbajadas() {
       };
 
       localStorage.setItem(
-        "Latin Embassies-favorites",
+        "Sprach Tandem-favorites",
         JSON.stringify(updatedFavorites)
       );
       setFavorites(updatedFavorites);
     }
   };
 
-  const favoriteEmbajadas = embajadas.filter((embajada) =>
-    favorites.some((fav) => fav.id === embajada.id)
+  const FavoriteTandems = tandems.filter((tandem) =>
+    favorites.some((fav) => fav.id === tandem.id)
   );
 
   return (
-    <Layout title="Favorite Embassies">
+    <Layout title="Favorite Tandems">
       <BackButtonArrow to={"/favorites"} />
       <StyledListContainer>
-        {favoriteEmbajadas.map((embajada) => (
+        {FavoriteTandems.map((tandem) => (
           <PlaceCard
-            key={embajada.id}
+            key={tandem.id}
             place={{
-              place_id: embajada.id,
-              name: embajada.pais,
-              bandera: embajada.bandera,
-              description: "Embajada",
-              formatted_address: embajada.direccion,
-              formatted_phone_number: embajada.telefono,
+              place_id: tandem.id,
+              name: tandem.nombre,
+              description: "Intercambio de Idiomas",
+              formatted_address: tandem.direccion,
+              formatted_phone_number: tandem.telefono,
               rating: 0,
-              website: embajada.pagina_web,
-              bandera: embajada.bandera,
+              website: tandem.pagina_web,
             }}
-            isFavorite={favorites.some((fav) => fav.id === embajada.id)}
-            onToggleFavorite={() => handleToggleFavorite(embajada.id)}
-            showNoteButton={true} // Habilita el botón para agregar nota
+            isFavorite={favorites.some((fav) => fav.id === tandem.id)}
+            onToggleFavorite={() => handleToggleFavorite(tandem.id)}
+            showNoteButton={true}
             favorites={favorites}
-            type={"Latin Embassies"} // Añade el tipo como "Latin Embassies"
-            onUpdateNote={handleUpdateNote} // Añade el manejador para actualizar notas
+            type={"Sprach Tandem"}
+            onUpdateNote={handleUpdateNote}
             showRating={false}
             onWebsiteClick={(url) => window.open(url, "_blank")}
             showWebsite={true}
@@ -103,4 +101,4 @@ function FavoriteEmbajadas() {
   );
 }
 
-export default FavoriteEmbajadas;
+export default FavoriteTandems;

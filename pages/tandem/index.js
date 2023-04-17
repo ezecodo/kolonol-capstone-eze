@@ -2,24 +2,21 @@ import PlaceCard from "../../components/PlaceCard";
 import React, { useState, useEffect } from "react";
 import BackButtonArrow from "../../components/BackButtonHome";
 
-function Embajadas() {
-  const [embajadas, setEmbajadas] = useState([]);
+function Tandems() {
+  const [tandems, setTandems] = useState([]);
   const [favorites, setFavorites] = useState(() => {
-    const localData = localStorage.getItem("Latin Embassies-favorites");
+    const localData = localStorage.getItem("Sprach Tandem-favorites");
     return localData ? JSON.parse(localData) : [];
   });
 
   useEffect(() => {
-    fetch("../api/embajadas")
+    fetch("../api/tandem")
       .then((response) => response.json())
-      .then((data) => setEmbajadas(data));
+      .then((data) => setTandems(data));
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(
-      "Latin Embassies-favorites",
-      JSON.stringify(favorites)
-    );
+    localStorage.setItem("Sprach Tandem-favorites", JSON.stringify(favorites));
   }, [favorites]);
 
   const handleToggleFavorite = (place_id) => {
@@ -28,7 +25,7 @@ function Embajadas() {
     if (placeIndex !== -1) {
       const newFavorites = favorites.filter((fav) => fav.id !== place_id);
       localStorage.setItem(
-        "Latin Embassies-favorites",
+        "Sprach Tandem-favorites",
         JSON.stringify(newFavorites)
       );
       setFavorites(newFavorites);
@@ -62,22 +59,20 @@ function Embajadas() {
     <div style={containerStyle}>
       <div style={cardsContainerStyle}>
         <BackButtonArrow to={"/"} />
-        {embajadas.map((embajada) => (
+        {tandems.map((tandem) => (
           <PlaceCard
-            key={embajada.id}
+            key={tandem.id}
             place={{
-              place_id: embajada.id,
-              name: embajada.pais,
-              bandera: embajada.bandera,
-              description: "Embajada",
-              formatted_address: embajada.direccion,
-              formatted_phone_number: embajada.telefono,
-              rating: 0,
-              website: embajada.pagina_web,
-              bandera: embajada.bandera,
+              place_id: tandem.id,
+              name: tandem.nombre,
+
+              description: "Intercambio de Idioma",
+              formatted_address: tandem.direccion,
+              formatted_phone_number: tandem.telefono,
+              website: tandem.pagina_web,
             }}
-            isFavorite={favorites.some((fav) => fav.id === embajada.id)}
-            onToggleFavorite={() => handleToggleFavorite(embajada.id)}
+            isFavorite={favorites.some((fav) => fav.id === tandem.id)}
+            onToggleFavorite={() => handleToggleFavorite(tandem.id)}
             showNoteButton={false}
             showRating={false}
             onWebsiteClick={(url) => window.open(url, "_blank")}
@@ -89,4 +84,4 @@ function Embajadas() {
   );
 }
 
-export default Embajadas;
+export default Tandems;

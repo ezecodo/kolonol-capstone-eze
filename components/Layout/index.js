@@ -15,7 +15,7 @@ const StyledHeader = styled.header`
   left: 0;
   right: 0;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  height: 50px;
+  height: 80px;
   z-index: 1;
 `;
 
@@ -66,13 +66,13 @@ const TitleContainer = styled.div`
 `;
 const StyledSubtitle = styled.div`
   font-family: monospace;
-  font-size: 15px;
+  font-size: 20px;
   margin-left: 10px;
-  margin-top: -18px;
+  margin-top: -10px;
   color: black;
 `;
 const StyledIcon = styled.span`
-  font-size: 2rem;
+  font-size: 50px;
   margin-right: 1rem;
 `;
 
@@ -149,7 +149,7 @@ const Layout = ({ children }) => {
               color="white"
               fontSize="40px"
               textShadow="8px 2px 2px #000"
-              marginBottom="10px"
+              marginBottom="25px"
             />
             <StyledSubtitle>Köln en español</StyledSubtitle>
           </TitleContainer>

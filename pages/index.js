@@ -58,7 +58,7 @@ function Home() {
             <Button>Latin Music</Button>
           </StyledLink>
         </Link>
-        <Link href="/latin-music">
+        <Link href="../tandem">
           <StyledLink>
             <Button>Tandem</Button>
           </StyledLink>

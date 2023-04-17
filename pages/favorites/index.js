@@ -92,9 +92,10 @@ function FavCategories() {
             </StyledLink>
           </Link>
         )}
-        <Link href="/">
+
+        <Link href="/tandem/FavoriteTandem">
           <StyledLink>
-            <Button>Random Text 1</Button>
+            <Button>Intercambio de Idiomas</Button>
           </StyledLink>
         </Link>
         <Link href="/">

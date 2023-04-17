@@ -15,7 +15,7 @@ const Title = styled.h1`
 const StyledListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-top: 90px;
+  margin-top: 130px;
   margin-bottom: 110px;
   justify-content: center;
 `;
