@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Link from "next/link";
+
+import { useRouter } from "next/router";
 
 const BackButton = styled.button`
   position: fixed;
@@ -31,12 +32,16 @@ const Arrow = styled.i`
 `;
 
 function BackButtonArrow({ to }) {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(to);
+  };
+
   return (
-    <Link href={to}>
-      <BackButton>
-        <Arrow />
-      </BackButton>
-    </Link>
+    <BackButton role="button" onClick={handleClick}>
+      <Arrow />
+    </BackButton>
   );
 }
 

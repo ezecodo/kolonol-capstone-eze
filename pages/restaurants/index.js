@@ -34,12 +34,10 @@ export default function LatinRestaurants({ places, type }) {
     const placeIndex = favorites.findIndex((fav) => fav.place_id === place_id);
 
     if (placeIndex !== -1) {
-      // Si el lugar ya está en los favoritos, lo eliminamos
       const newFavorites = favorites.filter((fav) => fav.place_id !== place_id);
       localStorage.setItem(`${type}-favorites`, JSON.stringify(newFavorites));
       setFavorites(newFavorites);
     } else {
-      // Si el lugar no está en los favoritos, lo agregamos con una nota en blanco
       const newFavorite = { place_id, note: "" };
       const newFavorites = [...favorites, newFavorite];
       localStorage.setItem(`${type}-favorites`, JSON.stringify(newFavorites));

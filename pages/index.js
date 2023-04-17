@@ -51,22 +51,22 @@ function Home() {
       <Container>
         <Wrapper>
           <Link href="../restaurants">
-            <StyledLink>
+            <StyledLink as="a">
               <Button>Latin Restaurants</Button>
             </StyledLink>
           </Link>
           <Link href="../night-life">
-            <StyledLink>
+            <StyledLink as="a">
               <Button>Latin Music</Button>
             </StyledLink>
           </Link>
           <Link href="../tandem">
-            <StyledLink>
+            <StyledLink as="a">
               <Button>Tandem</Button>
             </StyledLink>
           </Link>
           <Link href="./embajadas/embajadas">
-            <StyledLink>
+            <StyledLink as="a">
               <Button>Embajadas</Button>
             </StyledLink>
           </Link>
