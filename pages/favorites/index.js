@@ -9,6 +9,11 @@ const Wrapper = styled.div`
   grid-gap: 10px;
 `;
 
+const NoFavorites = styled.h2`
+  font-family: monospace;
+  font-size: 1.2rem;
+`;
+
 const Button = styled.button`
   display: flex;
   align-items: center;
@@ -135,7 +140,7 @@ function FavCategories() {
             )}
           </Wrapper>
         ) : (
-          <h2>Todavía no tienes favoritos</h2>
+          <NoFavorites>Todavía no tienes favoritos</NoFavorites>
         )}
       </Container>
     </Layout>
