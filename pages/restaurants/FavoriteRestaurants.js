@@ -71,7 +71,7 @@ export default function FavoriteRestaurants({ places, type }) {
   };
 
   return (
-    <Layout title={`${type} Places`}>
+    <Layout title={`${type} Places`} visibleTitle="Tus Restaurantes Favoritos">
       <BackButtonArrow to={"../favorites"} />
       <StyledListContainer>
         {favoritePlaces.map((place) => (

@@ -58,6 +58,23 @@ const StyledTitle = styled.div`
   margin-bottom: 10px;
 `;
 
+const PageTitle = styled.h2`
+  position: fixed;
+  top: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  margin: 0;
+  padding: 5px 10px;
+  background-color: #15aabf;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+  font-family: "Monospace", monospace;
+  font-size: 16px;
+  color: white;
+  border-radius: 5px;
+  z-index: 10;
+`;
+
 const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -109,9 +126,14 @@ const ToggleButton = styled.button`
   margin-right: 1rem;
 `;
 
-const Layout = ({ children }) => {
+const Main = styled.main`
+  position: relative; // Agregar posición relativa
+`;
+
+const Layout = ({ children, title, visibleTitle }) => {
   const [language, setLanguage] = useState("es");
   const [userName, setUserName] = useState("");
+  const pageTitle = visibleTitle;
 
   const router = useRouter();
   const { highlightStar } = useHighlight();
@@ -156,7 +178,10 @@ const Layout = ({ children }) => {
         </StyledTitle>
       </StyledHeader>
 
-      <main>{children}</main>
+      <Main>
+        <PageTitle>{pageTitle}</PageTitle>
+        {children}
+      </Main>
 
       <StyledFooter>
         <ToggleButton onClick={toggleLanguage}>

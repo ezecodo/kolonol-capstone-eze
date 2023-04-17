@@ -51,7 +51,7 @@ export default function LatinRestaurants({ places, type }) {
     }
   };
   return (
-    <Layout title={`${type} Places`}>
+    <Layout title={`${type} Places`} visibleTitle="Restaurantes Latinos">
       <BackButtonArrow to={"/"} />
       <StyledListContainer>
         {places.map((place) => (

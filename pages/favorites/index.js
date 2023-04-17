@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import Layout from "../../components/Layout";
 
 const Wrapper = styled.div`
   display: grid;
@@ -75,48 +76,50 @@ function FavCategories() {
   }, []);
 
   return (
-    <Container>
-      <Wrapper>
-        {hasLatinRestaurants && (
-          <Link href="/restaurants/FavoriteRestaurants">
+    <Layout visibleTitle="Estos son tus Favoritos">
+      <Container>
+        <Wrapper>
+          {hasLatinRestaurants && (
+            <Link href="/restaurants/FavoriteRestaurants">
+              <StyledLink>
+                <Button>Latin Restaurants</Button>
+              </StyledLink>
+            </Link>
+          )}
+          {hasLatinClubs && (
+            <Link href="/night-life/FavoriteClubs">
+              <StyledLink>
+                <Button>Latin Clubs</Button>
+              </StyledLink>
+            </Link>
+          )}
+          {hasLatinEmbassies && (
+            <Link href="/embajadas/FavoriteEmbajadas">
+              <StyledLink>
+                <Button>Embajadas</Button>
+              </StyledLink>
+            </Link>
+          )}
+          {hasLatinTandems && (
+            <Link href="/tandem/FavoriteTandem">
+              <StyledLink>
+                <Button>Intercambio de Idiomas</Button>
+              </StyledLink>
+            </Link>
+          )}
+          <Link href="/">
             <StyledLink>
-              <Button>Latin Restaurants</Button>
+              <Button>Random Text 2</Button>
             </StyledLink>
           </Link>
-        )}
-        {hasLatinClubs && (
-          <Link href="/night-life/FavoriteClubs">
+          <Link href="/">
             <StyledLink>
-              <Button>Latin Clubs</Button>
+              <Button>Random Text 3</Button>
             </StyledLink>
           </Link>
-        )}
-        {hasLatinEmbassies && (
-          <Link href="/embajadas/FavoriteEmbajadas">
-            <StyledLink>
-              <Button>Embajadas</Button>
-            </StyledLink>
-          </Link>
-        )}
-        {hasLatinTandems && (
-          <Link href="/tandem/FavoriteTandem">
-            <StyledLink>
-              <Button>Intercambio de Idiomas</Button>
-            </StyledLink>
-          </Link>
-        )}
-        <Link href="/">
-          <StyledLink>
-            <Button>Random Text 2</Button>
-          </StyledLink>
-        </Link>
-        <Link href="/">
-          <StyledLink>
-            <Button>Random Text 3</Button>
-          </StyledLink>
-        </Link>
-      </Wrapper>
-    </Container>
+        </Wrapper>
+      </Container>
+    </Layout>
   );
 }
 

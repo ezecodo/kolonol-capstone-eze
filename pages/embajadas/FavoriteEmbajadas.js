@@ -70,7 +70,7 @@ function FavoriteEmbajadas() {
   );
 
   return (
-    <Layout title="Favorite Embassies">
+    <Layout title="Favorite Embassies" visibleTitle="Embajadas guardadas">
       <BackButtonArrow to={"/favorites"} />
       <StyledListContainer>
         {favoriteEmbajadas.map((embajada) => (

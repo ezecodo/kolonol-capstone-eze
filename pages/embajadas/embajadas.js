@@ -1,6 +1,7 @@
 import PlaceCard from "../../components/PlaceCard";
 import React, { useState, useEffect } from "react";
 import BackButtonArrow from "../../components/BackButtonHome";
+import Layout from "../../components/Layout";
 
 function Embajadas() {
   const [embajadas, setEmbajadas] = useState([]);
@@ -59,35 +60,37 @@ function Embajadas() {
   };
 
   return (
-    <div style={containerStyle}>
-      <div style={cardsContainerStyle}>
-        <BackButtonArrow to={"/"} />
-        {embajadas.map((embajada) => (
-          <PlaceCard
-            key={embajada.place_id}
-            place={{
-              place_id: embajada.place_id,
-              name: embajada.pais,
-              bandera: embajada.bandera,
-              description: "Embajada",
-              formatted_address: embajada.direccion,
-              formatted_phone_number: embajada.telefono,
-              rating: 0,
-              website: embajada.pagina_web,
-              bandera: embajada.bandera,
-            }}
-            isFavorite={favorites.some(
-              (fav) => fav.place_id === embajada.place_id
-            )}
-            onToggleFavorite={() => handleToggleFavorite(embajada.place_id)}
-            showNoteButton={false}
-            showRating={false}
-            onWebsiteClick={(url) => window.open(url, "_blank")}
-            showWebsite={true}
-          />
-        ))}
+    <Layout visibleTitle="Embajadas latinoamericanas en Alemania">
+      <div style={containerStyle}>
+        <div style={cardsContainerStyle}>
+          <BackButtonArrow to={"/"} />
+          {embajadas.map((embajada) => (
+            <PlaceCard
+              key={embajada.place_id}
+              place={{
+                place_id: embajada.place_id,
+                name: embajada.pais,
+                bandera: embajada.bandera,
+                description: "Embajada",
+                formatted_address: embajada.direccion,
+                formatted_phone_number: embajada.telefono,
+                rating: 0,
+                website: embajada.pagina_web,
+                bandera: embajada.bandera,
+              }}
+              isFavorite={favorites.some(
+                (fav) => fav.place_id === embajada.place_id
+              )}
+              onToggleFavorite={() => handleToggleFavorite(embajada.place_id)}
+              showNoteButton={false}
+              showRating={false}
+              onWebsiteClick={(url) => window.open(url, "_blank")}
+              showWebsite={true}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 }
 

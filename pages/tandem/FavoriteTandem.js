@@ -70,7 +70,7 @@ function FavoriteTandems() {
   );
 
   return (
-    <Layout title="Favorite Tandems">
+    <Layout title="Favorite Tandems" visibleTitle={"A practicar Alemán"}>
       <BackButtonArrow to={"/favorites"} />
       <StyledListContainer>
         {FavoriteTandems.map((tandem) => (

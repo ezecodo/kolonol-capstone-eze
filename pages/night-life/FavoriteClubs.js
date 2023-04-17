@@ -69,7 +69,7 @@ export default function LatinClubs({ places, type }) {
     }
   };
   return (
-    <Layout title={`${type} Places`}>
+    <Layout title={`${type} Places`} visibleTitle="Tus Clubs favoritos">
       <BackButtonArrow to={"../favorites"} />
       <StyledListContainer>
         {favoritePlaces.map((place) => (

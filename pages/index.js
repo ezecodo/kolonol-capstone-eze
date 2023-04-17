@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import Layout from "../components/Layout";
 
 const Wrapper = styled.div`
   display: grid;
@@ -46,40 +47,42 @@ const Container = styled.div`
 
 function Home() {
   return (
-    <Container>
-      <Wrapper>
-        <Link href="../restaurants">
-          <StyledLink>
-            <Button>Latin Restaurants</Button>
-          </StyledLink>
-        </Link>
-        <Link href="../night-life">
-          <StyledLink>
-            <Button>Latin Music</Button>
-          </StyledLink>
-        </Link>
-        <Link href="../tandem">
-          <StyledLink>
-            <Button>Tandem</Button>
-          </StyledLink>
-        </Link>
-        <Link href="./embajadas/embajadas">
-          <StyledLink>
-            <Button>Embajadas</Button>
-          </StyledLink>
-        </Link>
-        <Link href="/">
-          <StyledLink>
-            <Button>Random Text 2</Button>
-          </StyledLink>
-        </Link>
-        <Link href="/">
-          <StyledLink>
-            <Button>Random Text 3</Button>
-          </StyledLink>
-        </Link>
-      </Wrapper>
-    </Container>
+    <Layout visibleTitle="Bienvenidos a Colonia">
+      <Container>
+        <Wrapper>
+          <Link href="../restaurants">
+            <StyledLink>
+              <Button>Latin Restaurants</Button>
+            </StyledLink>
+          </Link>
+          <Link href="../night-life">
+            <StyledLink>
+              <Button>Latin Music</Button>
+            </StyledLink>
+          </Link>
+          <Link href="../tandem">
+            <StyledLink>
+              <Button>Tandem</Button>
+            </StyledLink>
+          </Link>
+          <Link href="./embajadas/embajadas">
+            <StyledLink>
+              <Button>Embajadas</Button>
+            </StyledLink>
+          </Link>
+          <Link href="/">
+            <StyledLink>
+              <Button>Random Text 2</Button>
+            </StyledLink>
+          </Link>
+          <Link href="/">
+            <StyledLink>
+              <Button>Random Text 3</Button>
+            </StyledLink>
+          </Link>
+        </Wrapper>
+      </Container>
+    </Layout>
   );
 }
 

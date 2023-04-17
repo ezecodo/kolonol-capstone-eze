@@ -52,7 +52,7 @@ export default function LatinClubs({ places, type }) {
   };
 
   return (
-    <Layout title={`${type} Places`}>
+    <Layout title={`${type} Places`} visibleTitle="Clubs con música latina">
       <BackButtonArrow to={"/"} />
       <StyledListContainer>
         {places.map((place) => (

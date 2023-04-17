@@ -1,6 +1,7 @@
 import PlaceCard from "../../components/PlaceCard";
 import React, { useState, useEffect } from "react";
 import BackButtonArrow from "../../components/BackButtonHome";
+import Layout from "../../components/Layout";
 
 function Tandems() {
   const [tandems, setTandems] = useState([]);
@@ -56,33 +57,35 @@ function Tandems() {
   };
 
   return (
-    <div style={containerStyle}>
-      <div style={cardsContainerStyle}>
-        <BackButtonArrow to={"/"} />
-        {tandems.map((tandem) => (
-          <PlaceCard
-            key={tandem.place_id}
-            place={{
-              place_id: tandem.place_id,
-              name: tandem.nombre,
+    <Layout visibleTitle="Intercambio de Idioma">
+      <div style={containerStyle}>
+        <div style={cardsContainerStyle}>
+          <BackButtonArrow to={"/"} />
+          {tandems.map((tandem) => (
+            <PlaceCard
+              key={tandem.place_id}
+              place={{
+                place_id: tandem.place_id,
+                name: tandem.nombre,
 
-              description: "Tandem",
-              formatted_address: tandem.direccion,
-              formatted_phone_number: tandem.telefono,
-              website: tandem.pagina_web,
-            }}
-            isFavorite={favorites.some(
-              (fav) => fav.place_id === tandem.place_id
-            )}
-            onToggleFavorite={() => handleToggleFavorite(tandem.place_id)}
-            showNoteButton={false}
-            showRating={false}
-            onWebsiteClick={(url) => window.open(url, "_blank")}
-            showWebsite={true}
-          />
-        ))}
+                description: "Tandem",
+                formatted_address: tandem.direccion,
+                formatted_phone_number: tandem.telefono,
+                website: tandem.pagina_web,
+              }}
+              isFavorite={favorites.some(
+                (fav) => fav.place_id === tandem.place_id
+              )}
+              onToggleFavorite={() => handleToggleFavorite(tandem.place_id)}
+              showNoteButton={false}
+              showRating={false}
+              onWebsiteClick={(url) => window.open(url, "_blank")}
+              showWebsite={true}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 }
 
