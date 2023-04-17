@@ -70,7 +70,7 @@ function Home() {
               <Button>Embajadas</Button>
             </StyledLink>
           </Link>
-          <Link href="/">
+          {/* <Link href="/">
             <StyledLink>
               <Button>Random Text 2</Button>
             </StyledLink>
@@ -79,7 +79,7 @@ function Home() {
             <StyledLink>
               <Button>Random Text 3</Button>
             </StyledLink>
-          </Link>
+          </Link> */}
         </Wrapper>
       </Container>
     </Layout>

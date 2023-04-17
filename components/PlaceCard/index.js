@@ -249,7 +249,7 @@ function PlaceCard({
           )}
           <Name>{place.name}</Name>
         </div>
-        <Description>{description}</Description>
+
         <Address>{address}</Address>
         <Phone>{phone}</Phone>
         <StyledWebsite

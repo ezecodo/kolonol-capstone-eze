@@ -50,8 +50,12 @@ function FavCategories() {
   const [hasLatinClubs, setHasLatinClubs] = useState(false);
   const [hasLatinEmbassies, setHasLatinEmbassies] = useState(false);
   const [hasLatinTandems, setHasLatinTandemss] = useState(false);
+  const [hasFavorites, setHasFavorites] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     const latinRestaurantFavorites =
       JSON.parse(localStorage.getItem("Latin Restaurant-favorites")) || [];
     if (latinRestaurantFavorites.length > 0) {
@@ -73,51 +77,66 @@ function FavCategories() {
     if (latinTandemsFavorites.length > 0) {
       setHasLatinTandemss(true);
     }
+
+    if (
+      hasLatinRestaurants ||
+      hasLatinClubs ||
+      hasLatinEmbassies ||
+      hasLatinTandems
+    ) {
+      setHasFavorites(true);
+    }
+    setLoading(false);
+  }, [hasLatinRestaurants, hasLatinClubs, hasLatinEmbassies, hasLatinTandems]);
+
+  useEffect(() => {
+    return () => {
+      setIsMounted(false);
+    };
   }, []);
 
   return (
     <Layout visibleTitle="Estos son tus Favoritos">
       <Container>
-        <Wrapper>
-          {hasLatinRestaurants && (
-            <Link href="/restaurants/FavoriteRestaurants">
-              <StyledLink>
-                <Button>Latin Restaurants</Button>
-              </StyledLink>
-            </Link>
-          )}
-          {hasLatinClubs && (
-            <Link href="/night-life/FavoriteClubs">
-              <StyledLink>
-                <Button>Latin Clubs</Button>
-              </StyledLink>
-            </Link>
-          )}
-          {hasLatinEmbassies && (
-            <Link href="/embajadas/FavoriteEmbajadas">
-              <StyledLink>
-                <Button>Embajadas</Button>
-              </StyledLink>
-            </Link>
-          )}
-          {hasLatinTandems && (
-            <Link href="/tandem/FavoriteTandem">
-              <StyledLink>
-                <Button>Intercambio de Idiomas</Button>
-              </StyledLink>
-            </Link>
-          )}
-          <Link href="/">
-            <StyledLink>
-              <Button>Random Text 2</Button>
-            </StyledLink>
-          </Link>
-          <Link href="/">
-            <StyledLink>
-              <Button>Random Text 3</Button>
-            </StyledLink>
-          </Link>
-        </Wrapper>
+        {!isMounted ? (
+          <div>Loading...</div>
+        ) : loading ? (
+          // Puedes agregar un componente de carga aquí o simplemente dejarlo vacío
+          <div>Loading...</div>
+        ) : hasFavorites ? (
+          <Wrapper>
+            {hasLatinRestaurants && (
+              <Link href="/restaurants/FavoriteRestaurants">
+                <StyledLink>
+                  <Button>Latin Restaurants</Button>
+                </StyledLink>
+              </Link>
+            )}
+            {hasLatinClubs && (
+              <Link href="/night-life/FavoriteClubs">
+                <StyledLink>
+                  <Button>Latin Clubs</Button>
+                </StyledLink>
+              </Link>
+            )}
+            {hasLatinEmbassies && (
+              <Link href="/embajadas/FavoriteEmbajadas">
+                <StyledLink>
+                  <Button>Embajadas</Button>
+                </StyledLink>
+              </Link>
+            )}
+            {hasLatinTandems && (
+              <Link href="/tandem/FavoriteTandem">
+                <StyledLink>
+                  <Button>Intercambio de Idiomas</Button>
+                </StyledLink>
+              </Link>
+            )}
+          </Wrapper>
+        ) : (
+          <h2>Todavía no tienes favoritos</h2>
+        )}
       </Container>
     </Layout>
   );
