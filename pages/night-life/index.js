@@ -8,10 +8,6 @@ import {
 } from "../../utils/google_places";
 import BackButtonArrow from "../../components/BackButtonHome";
 
-const Title = styled.h1`
-  margin-top: 100px;
-`;
-
 const StyledListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;

@@ -5,7 +5,6 @@ import HomeMessage from "../components/HomeMessage";
 import Layout from "../components/Layout";
 import GlobalStyle from "../styles/globalStyles";
 import { HighlightProvider } from "../components/HighlightProvider";
-import Loading from "../components/Loading";
 
 class MyApp extends App {
   state = {

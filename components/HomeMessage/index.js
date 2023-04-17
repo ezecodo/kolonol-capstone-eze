@@ -61,7 +61,7 @@ const Subtitle = styled.p`
   margin-bottom: 1rem;
 `;
 
-const HomeMessage = () => {
+function HomeMessage() {
   const [showInput, setShowInput] = useState(false);
   const [name, setName] = useState("");
   const router = useRouter();
@@ -123,6 +123,6 @@ const HomeMessage = () => {
       )}
     </Container>
   );
-};
+}
 
 export default HomeMessage;
