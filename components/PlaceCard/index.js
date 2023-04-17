@@ -208,7 +208,7 @@ function PlaceCard({
   const handleSubmitNote = (e) => {
     e.preventDefault();
 
-    onUpdateNote(place.place_id, note); // Usa onUpdateNote aquí
+    onUpdateNote(place.place_id, note);
 
     console.log("Nota enviada:", note);
     setShowNoteWindow(false);

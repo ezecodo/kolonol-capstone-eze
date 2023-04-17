@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import { useRouter } from "next/router";
 import PacificoTitle from "../Logo";
-import { useHighlight } from "../HighlightProvider";
+import { useHighlight } from "../../components/HighlightProvider";
 
 const StyledHeader = styled.header`
   background-color: #15aabf;
@@ -135,7 +134,6 @@ const Layout = ({ children, title, visibleTitle }) => {
   const [userName, setUserName] = useState("");
   const pageTitle = visibleTitle;
 
-  const router = useRouter();
   const { highlightStar } = useHighlight();
 
   useEffect(() => {
