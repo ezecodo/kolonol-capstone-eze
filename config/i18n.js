@@ -10,7 +10,7 @@ i18n
       de: {
         translation: {
           saludo: "Hallo",
-          subtitleHeader: "Köln auf Spanish",
+          subtitleHeader: "Köln auf Spanisch",
           welcome: "Willkomen in Köln",
           insertUser: "Bitte gib deinen Namen ein:",
           latinFood: "Lateinisches Essen",
