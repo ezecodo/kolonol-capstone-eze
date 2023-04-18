@@ -60,7 +60,7 @@ function Embajadas() {
   };
 
   return (
-    <Layout visibleTitle="Embajadas latinoamericanas en Alemania">
+    <Layout visibleTitle="Embajadas latinoamericanas">
       <div style={containerStyle}>
         <div style={cardsContainerStyle}>
           <BackButtonArrow to={"/"} />

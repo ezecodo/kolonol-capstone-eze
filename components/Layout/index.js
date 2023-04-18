@@ -25,7 +25,9 @@ const Greeting = styled.div`
   font-size: 1rem;
   font-weight: bold;
   padding-left: 0;
+  padding-top: 20px;
   margin-left: 0;
+  border-color: blue;
 `;
 const StyledFooter = styled.footer`
   display: flex;
@@ -63,6 +65,9 @@ const PageTitle = styled.h2`
   position: fixed;
   top: 110px;
   left: 50%;
+  width: 100%;
+  align-items: center;
+  text-align: center;
   transform: translateX(-50%);
   white-space: nowrap;
   margin: 0;
