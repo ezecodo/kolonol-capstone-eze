@@ -9,24 +9,24 @@ Kolonol is the tool that was missing to make the integration process more bearab
 
 # Tech Stack
 
--Next.js
--React
--React Hooks
--React Router
--React Testing Library / Jest
--JavaScript
--Styled Components
--i18next
--localStorage/use-local-storage-state
--npm
--Vercel
+1.Next.js
+2.React
+3.React Hooks
+4.React Router
+5.React Testing Library / Jest
+6.JavaScript
+7.Styled Components
+8i18next
+9.localStorage/use-local-storage-state
+10.npm
+11.Vercel
 
 # Project Setup
 
--Clone this repository
--Get your API key from Google Places
--Set up your own .env file with your API key
--Install all dependencies with $ npm install
--Run app in dev mode with $ npm run dev
--Server: http://localhost:3000/
--Run tests via $ npm run test
+1.Clone this repository
+2.Get your API key from Google Places
+3.Set up your own .env file with your API key
+4.Install all dependencies with $ npm install
+5.Run app in dev mode with $ npm run dev
+6.Server: http://localhost:3000/
+7.Run tests via $ npm run test
