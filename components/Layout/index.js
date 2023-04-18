@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import PacificoTitle from "../Logo";
 import { useHighlight } from "../../components/HighlightProvider";
+import { useTranslation } from "react-i18next";
+import { i18n } from "../../config/i18n";
 
 const StyledHeader = styled.header`
   background-color: #15aabf;
@@ -128,13 +130,29 @@ const ToggleButton = styled.button`
 const Main = styled.main`
   position: relative; // Agregar posición relativa
 `;
+const LanguageSelector = () => {
+  const { i18n } = useTranslation();
 
-const Layout = ({ children, title, visibleTitle }) => {
+  const toggleLanguage = useCallback(() => {
+    const newLanguage = i18n.language === "es" ? "de" : "es";
+    i18n.changeLanguage(newLanguage);
+  }, [i18n]);
+
+  return (
+    <ToggleButton onClick={toggleLanguage}>
+      {i18n.language === "es" ? "ES" : "DE"}
+    </ToggleButton>
+  );
+};
+
+const Layout = ({ children, title, visibleTitle, subtitlekey }) => {
   const [language, setLanguage] = useState("es");
   const [userName, setUserName] = useState("");
   const pageTitle = visibleTitle;
 
   const { highlightStar } = useHighlight();
+  const { i18n, t } = useTranslation();
+  const translatedSubtitle = t(subtitlekey);
 
   useEffect(() => {
     const storedUserName = localStorage.getItem("userName");
@@ -143,15 +161,11 @@ const Layout = ({ children, title, visibleTitle }) => {
     }
   }, []);
 
-  const toggleLanguage = () => {
-    setLanguage(language === "es" ? "de" : "es");
-  };
-
   return (
     <>
       <StyledHeader>
         <Greeting>
-          Hola <br />{" "}
+          {t("saludo")} <br />{" "}
           <span
             style={{
               color: "black",
@@ -171,7 +185,7 @@ const Layout = ({ children, title, visibleTitle }) => {
               textShadow="8px 2px 2px #000"
               marginBottom="25px"
             />
-            <StyledSubtitle>Köln en español</StyledSubtitle>
+            <StyledSubtitle>{t("subtitleHeader")} </StyledSubtitle>
           </TitleContainer>
         </StyledTitle>
       </StyledHeader>
@@ -182,9 +196,7 @@ const Layout = ({ children, title, visibleTitle }) => {
       </Main>
 
       <StyledFooter>
-        <ToggleButton onClick={toggleLanguage}>
-          {language === "es" ? "ES" : "DE"}
-        </ToggleButton>
+        <LanguageSelector />
 
         <StyledIcon>
           <Link href="/">🏠</Link>

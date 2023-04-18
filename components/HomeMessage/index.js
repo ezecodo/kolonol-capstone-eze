@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import PacificoTitle from "../Logo";
+import { useTranslation } from "react-i18next";
 
 const Container = styled.div`
   margin-top: 0;
@@ -66,8 +67,10 @@ function HomeMessage() {
   const [name, setName] = useState("");
   const router = useRouter();
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const { t, i18n } = useTranslation();
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (language) => {
+    i18n.changeLanguage(language);
     setShowInput(true);
   };
 
@@ -97,7 +100,7 @@ function HomeMessage() {
       {showInput ? (
         <>
           <InputContainer>
-            <div>Ingresa tu nombre:</div>
+            <div>{t("insertUser")}</div>
             <Input
               type="text"
               value={name}
@@ -116,8 +119,8 @@ function HomeMessage() {
           <PacificoTitle />
           <Subtitle>Köln en español</Subtitle>
           <LangButtonContainer>
-            <Button onClick={handleButtonClick}>ES</Button>
-            <Button onClick={handleButtonClick}>DE</Button>
+            <Button onClick={() => handleButtonClick("es")}>ES</Button>
+            <Button onClick={() => handleButtonClick("de")}>DE</Button>
           </LangButtonContainer>
         </>
       )}

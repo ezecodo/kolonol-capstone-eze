@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Layout from "../../components/Layout";
+import { useTranslation } from "react-i18next";
 
 const Wrapper = styled.div`
   display: grid;
@@ -58,6 +59,7 @@ function FavCategories() {
   const [hasFavorites, setHasFavorites] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setIsMounted(true);
@@ -140,7 +142,7 @@ function FavCategories() {
             )}
           </Wrapper>
         ) : (
-          <NoFavorites>Todavía no tienes favoritos</NoFavorites>
+          <NoFavorites>{t("noFavorites")}</NoFavorites>
         )}
       </Container>
     </Layout>

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Layout from "../components/Layout";
+import { useTranslation } from "react-i18next";
 
 const Wrapper = styled.div`
   display: grid;
@@ -46,28 +47,29 @@ const Container = styled.div`
 `;
 
 function Home() {
+  const { t } = useTranslation();
   return (
-    <Layout visibleTitle="Bienvenidos a Colonia">
+    <Layout visibleTitle={t("welcome")}>
       <Container>
         <Wrapper>
           <Link href="../restaurants">
             <StyledLink as="a">
-              <Button>Latin Restaurants</Button>
+              <Button>{t("latinFood")}</Button>
             </StyledLink>
           </Link>
           <Link href="../night-life">
             <StyledLink as="a">
-              <Button>Latin Music</Button>
+              <Button>{t("latinMusic")}</Button>
             </StyledLink>
           </Link>
           <Link href="../tandem">
             <StyledLink as="a">
-              <Button>Tandem</Button>
+              <Button>{t("languageExchange")}</Button>
             </StyledLink>
           </Link>
           <Link href="./embajadas/embajadas">
             <StyledLink as="a">
-              <Button>Embajadas</Button>
+              <Button>{t("embassies")}</Button>
             </StyledLink>
           </Link>
           {/* <Link href="/">
