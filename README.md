@@ -5,4 +5,4 @@ Kolonol is the tool that was missing to make the integration process more bearab
 
 ---
 
-![Kolonol](/images/1.png){ width=200px }![Kolonol](/images/2.png){ width=200px }![Kolonol](/images/3.png){ width=200px }![Kolonol](/images/4.png){ width=200px }
+![Kolonol](/images/1.png)
